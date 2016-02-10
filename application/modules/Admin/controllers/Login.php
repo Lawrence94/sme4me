@@ -75,7 +75,7 @@ class Login extends CI_Controller {
 						$role = $roleCheck->get("name");
 						if($role == SUPER_ADMINISTRATOR || $role == SUPER_ADMIN || $role == ADMIN || $role == USER || $role == EDITOR){
 							echo "Logging you in...";
-							redirect('admin/Dashboard');
+							redirect('Admin/Dashboard');
 						}
 						else{
 							# code...
@@ -99,7 +99,7 @@ class Login extends CI_Controller {
 			$this->load->view('login/login', $data);
 		}
 
-		
+
 	}
 
 
