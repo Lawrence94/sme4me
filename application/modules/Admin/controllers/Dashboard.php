@@ -65,7 +65,7 @@ class Dashboard extends CI_Controller {
 		}
 		else{
 			echo 'hey';
-			redirect('company/login','refresh');
+			redirect('Admin/Login','refresh');
 		}
 		
 	}
@@ -76,7 +76,7 @@ class Dashboard extends CI_Controller {
 		$currentUser = ParseUser::getCurrentUser();
 		$firstName = '';
 		$lastName = '';
-		$url = '/admin/dashboard';
+		$url = '/Admin/dashboard';
 		$cssClass = 'active';
 		$cssClass1 = '""';
 		$cssClass2 = '""';
