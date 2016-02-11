@@ -4,6 +4,7 @@ use Parse\ParseObject;
 use Parse\ParseUser;
 use Parse\ParseQuery;
 use Parse\ParseRole;
+
 class Dashboard extends CI_Controller {
 
 	/**
@@ -65,9 +66,24 @@ class Dashboard extends CI_Controller {
 		}
 		else{
 			echo 'hey';
-			redirect('Admin/Login','refresh');
+			redirect('Admin/Login', 'refresh');
 		}
 		
+	}
+
+	public function newpost()
+	{
+		$currentUser = ParseUser::getCurrentUser();
+		$adminName = $this->menu_header();
+		if ($currentUser){		
+		
+			$dashView = $this->load->view('dashboard/newpost', $adminName, true);
+			buildPage($dashView, 'Dashboard - New Post');
+		}
+		else{
+			echo 'hey';
+			redirect('Admin/Login', 'refresh');
+		}
 	}
 
 	public function menu_header(){
@@ -111,7 +127,7 @@ class Dashboard extends CI_Controller {
 
 		} else {
     		// show the signup or login page
-    		redirect('admin/login','refresh');
+    		redirect('Admin/Login','refresh');
 		}
     }
 }

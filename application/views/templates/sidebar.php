@@ -47,8 +47,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> New Post</a></li>
-                <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> All Posts</a></li>
+                <li><a href="<?php echo site_url('Admin/Dashboard/newpost');?>"><i class="fa fa-circle-o"></i> New Post</a></li>
+                <li><a href="<?php echo site_url('Admin/Dashboard/newpost');?>"><i class="fa fa-circle-o"></i> All Posts</a></li>
               </ul>
             </li>
       <li class="treeview active">
