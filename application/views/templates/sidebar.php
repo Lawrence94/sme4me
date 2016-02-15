@@ -30,7 +30,7 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Home</a></li>
+                <li class="active"><a href="<?= site_url($redirect) ?>"><i class="fa fa-circle-o"></i> Home</a></li>
                
               </ul>
             </li>

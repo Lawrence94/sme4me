@@ -29,6 +29,8 @@ class Dashboard extends CI_Controller {
 		//Do your magic here
 	    $this->load->helper(['buildpage_helper']);
 	    $this->load->library(array('Parseinit'));
+	    $this->load->helper(['notification_helper']);
+	    $this->load->model('login/Login_model', 'login');
 	}
 
 
@@ -86,13 +88,76 @@ class Dashboard extends CI_Controller {
 		}
 	}
 
+	public function makepost()
+	{
+		if ($this->input->post('adminpost')) {
+			$post = $this->input->post('adminpost');
+			$status1 = true;
+
+			$posttitle = $post['title'];
+			$purpose = $post['purpose'];
+			$eligibility = $post['eligibility'];
+			$level = $post['level'];
+			$value = $post['value'];
+			$valuedoll = $post['valuedoll'];
+			$frequency = $post['freq'];
+			$est = $post['est'];
+			$country = $post['country'];
+			$awards = $post['awards'];
+			$deadline = $post['deadline'];
+			$weblink = $post['weblink'];
+			$singlecat = $post['catsingle'];
+			//$multicat = $post['catmulti'];
+			$datecreated = date('Y-m-d h:i:s');
+
+			// var_dump($multicat);
+			// exit;
+
+			//$multijson = json_encode($multicat);
+
+			$postArray = ['title' => $posttitle,
+						  'purpose' => $purpose,
+						  'eligibility' => $eligibility,
+						  'level' => $level,
+						  'value' => $value,
+						  'valuedoll' => $valuedoll,
+						  'frequency' => $frequency,
+						  'establishment' => $est,
+						  'country' => $country,
+						  'awards' => $awards,
+						  'deadline' => $deadline,
+						  'weblink' => $weblink,
+						  'category' => $singlecat,
+						  'categories' => '',
+						  'datecreated' => $datecreated,
+						 ];
+
+			 // var_dump($postArray);
+			 // exit;
+
+			$postdb = $this->login->doPost($postArray);
+
+				if (!$postdb['status']){
+					$status1 = false;
+				}
+
+				if (!$status1){
+					//echo "fuck";
+					notify('danger', $loginParse['parseMsg'], 'Admin/Dashboard/newpost');
+				}else{
+					echo "Please wait, we'll take you back to the dashboard right away...";
+					notify('success', 'Post added sucessfully', 'Admin/Dashboard/newpost');
+				}
+		}
+	}
+
 	public function menu_header(){
 
 		//getting the currently logged in admin
 		$currentUser = ParseUser::getCurrentUser();
 		$firstName = '';
 		$lastName = '';
-		$url = '/Admin/dashboard';
+		$url = 'Admin/Dashboard';
 		$cssClass = 'active';
 		$cssClass1 = '""';
 		$cssClass2 = '""';
@@ -113,6 +178,7 @@ class Dashboard extends CI_Controller {
         	$this->session->set_userdata($userDetails);
 
     		return array(
+    		'displayData' => 'display:none',
         	'firstName' => $firstName,
         	'lastName' => $lastName,
         	'redirect' => $url,
