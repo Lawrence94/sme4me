@@ -96,7 +96,7 @@
                         <option>Grants</option>
                         <option>Scholarships</option>
                         <option>Competitions</option>
-                        <option>Intenships</option>
+                        <option>Internships</option>
                         <option>Fellowships</option>
                         <option>Corporations</option>
                       </select>
@@ -110,7 +110,7 @@
                         <option value="grants">Grants</option>
                         <option value="scholarships">Scholarships</option>
                         <option>Competitions</option>
-                        <option>Intenships</option>
+                        <option>Internships</option>
                         <option>Fellowships</option>
                         <option>Corporations</option>
                       </select>
