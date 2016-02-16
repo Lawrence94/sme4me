@@ -13,7 +13,7 @@ if(!function_exists('show_notification')){
     	if($CI->session->flashdata('type') != NULL) { ?>
 
 			<div class="alert alert-<?php echo $CI->session->flashdata('type')?> fade in">
-			    <button type="button" class="close" data-dismiss="alert"></button>
+			    <button type="button" class="close" data-dismiss="alert">x</button>
 			    <?php echo $CI->session->flashdata('msg');?>
 			</div>
 		<?php	
