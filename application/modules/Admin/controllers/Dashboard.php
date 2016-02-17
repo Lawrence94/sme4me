@@ -101,9 +101,9 @@ class Dashboard extends CI_Controller {
 			$value = $post['value'];
 			$valuedoll = $post['valuedoll'];
 			$frequency = $post['freq'];
-			$est = $post['est'];
+			//$est = $post['est'];
 			$country = $post['country'];
-			$awards = $post['awards'];
+			//$awards = $post['awards'];
 			$deadline = $post['deadline'];
 			$weblink = $post['weblink'];
 			$singlecat = $post['catsingle'];
@@ -122,13 +122,13 @@ class Dashboard extends CI_Controller {
 						  'value' => $value,
 						  'valuedoll' => $valuedoll,
 						  'frequency' => $frequency,
-						  'establishment' => $est,
+						  //'establishment' => $est,
 						  'country' => $country,
-						  'awards' => $awards,
+						  //'awards' => $awards,
 						  'deadline' => $deadline,
 						  'weblink' => $weblink,
 						  'category' => $singlecat,
-						  'categories' => '',
+						  //'categories' => '',
 						  'datecreated' => $datecreated,
 						 ];
 

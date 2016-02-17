@@ -39,7 +39,7 @@ class Login_model extends CI_Model {
     public function doPost($postArray)
     {
       # code...
-      if($this->db->insert('post', $postArray)){
+      if($this->db->insert('posts', $postArray)){
         return ['status' => true,];
       }else{
         return ['status' => false, 'parseMsg' => 'There was an error, please try again'];

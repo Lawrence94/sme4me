@@ -1,4 +1,4 @@
-<!-- Content Header (Page header) -->
+
 <section class="content-header">
           <h1>
             New Post
@@ -47,6 +47,7 @@
                       <label for="exampleInputPassword1">Level of Study </label>
                       <input type="text" name="adminpost[level]" class="form-control" id="exampleInputPassword1" placeholder="Level">
                     </div>
+
                     <div class="form-group">
 					            <div class="input-group">
                         <span class="input-group-addon">$</span>
@@ -54,6 +55,7 @@
                         <span class="input-group-addon">.00</span>
                       </div>
                     </div>
+
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon">$</span>
@@ -61,22 +63,17 @@
                         <span class="input-group-addon">.00</span>
                       </div>
                     </div>
+
 					          <div class="form-group">
-                      <label for="exampleInputPassword1">Frequency </label>
-                      <input type="text" name="adminpost[freq]" class="form-control" id="exampleInputPassword1" placeholder="Frequency">
+                      <label for="exampleInputPassword1">Course </label>
+                      <input type="text" name="adminpost[freq]" class="form-control" id="exampleInputPassword1" placeholder="Course">
                     </div>
-					          <div class="form-group">
-                      <label for="exampleInputPassword1">Study Establishment</label>
-                      <input type="text" name="adminpost[est]" class="form-control" id="exampleInputPassword1" placeholder="Study">
-                    </div>
+					          
 					          <div class="form-group">
                       <label for="exampleInputPassword1">Country of Study </label>
                       <input type="text" name="adminpost[country]" class="form-control" id="exampleInputPassword1" placeholder="Country">
                     </div>
-					          <div class="form-group">
-                      <label for="exampleInputPassword1">No. of awards offered </label>
-                      <input type="text" name="adminpost[awards]" name="" class="form-control" id="exampleInputPassword1" placeholder="Awards">
-                    </div>
+					          
                     <div class="form-group">
                       <label for="exampleInputPassword1">Deadline</label>
                       <input type="text" name="adminpost[deadline]" class="form-control" id="exampleInputPassword1" placeholder="Deadline">
@@ -93,18 +90,18 @@
                     <div class="form-group">
                       <label>Category</label>
                       <select name="adminpost[catsingle]" class="form-control">
-                        <option>Grants</option>
-                        <option>Scholarships</option>
-                        <option>Competitions</option>
-                        <option>Internships</option>
-                        <option>Fellowships</option>
-                        <option>Corporations</option>
+                        <option>Grant</option>
+                        <option>Scholarship</option>
+                        <option>Competition</option>
+                        <option>Internship</option>
+                        <option>Fellowship</option>
+                        <option>Corporation</option>
                       </select>
                     </div>
                     
 
                     <!-- Select multiple-->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label>category</label>
                       <select name="adminpost[catmulti]" multiple class="form-control">
                         <option value="grants">Grants</option>
@@ -114,7 +111,7 @@
                         <option>Fellowships</option>
                         <option>Corporations</option>
                       </select>
-                    </div>
+                    </div> -->
 
                   <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -124,4 +121,4 @@
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!--/.col (right) -->
-        </section><!-- /.content -->
+        </section><!-- /.content
