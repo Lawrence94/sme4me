@@ -105,7 +105,7 @@ div.ctools-ajaxing {
 	position:absolute;*
 	left:0;*
 	top:50%;*
-	width:130px;
+	width:100px;
 }
 .subtitle {
 	display:block;
@@ -116,7 +116,7 @@ div.ctools-ajaxing {
 }
 .inner .title span {
 	display:block;
-	overflow:hidden;
+	overflow:nowrap;
 	text-overflow:ellipsis;
 	margin:0 auto;
 *position:absolute;
