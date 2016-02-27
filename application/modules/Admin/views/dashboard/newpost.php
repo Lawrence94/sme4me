@@ -93,6 +93,12 @@
                         <option>Grant</option>
                         <option>Scholarship</option>
                         <option>Competition</option>
+                        <option>Startup</option>
+                        <option>Essay</option>
+                        <option>SocialInnovation</option>
+                        <option>Government</option>
+                        <option>Loan</option>
+                        <option>Philantropy</option>
                         <option>Internship</option>
                         <option>Fellowship</option>
                         <option>Corporation</option>
