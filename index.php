@@ -98,6 +98,7 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+require_once __DIR__.'/vendor/phpoffice/phpexcel/Classes/PHPExcel.php';
 require_once __DIR__.'/vendor/autoload.php';
 
 
