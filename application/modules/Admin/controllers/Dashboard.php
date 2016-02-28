@@ -94,60 +94,152 @@ class Dashboard extends CI_Controller {
 			$post = $this->input->post('adminpost');
 			$status1 = true;
 
-			$posttitle = $post['title'];
-			$purpose = $post['purpose'];
-			$eligibility = $post['eligibility'];
-			$level = $post['level'];
-			$value = $post['value'];
-			$valuedoll = $post['valuedoll'];
-			$frequency = $post['freq'];
-			//$est = $post['est'];
-			$country = $post['country'];
-			//$awards = $post['awards'];
-			$deadline = $post['deadline'];
-			$weblink = $post['weblink'];
-			$singlecat = $post['catsingle'];
-			//$multicat = $post['catmulti'];
-			$datecreated = date('Y-m-d h:i:s');
+			$postPath = $_FILES['adminpost']['name']['file'];
+			$filePath = 'assets/uploads';
+			$finalPath = $filePath . '/'.$postPath;
 
-			// var_dump($multicat);
-			// exit;
-
-			//$multijson = json_encode($multicat);
-
-			$postArray = ['title' => $posttitle,
-						  'purpose' => $purpose,
-						  'eligibility' => $eligibility,
-						  'level' => $level,
-						  'value' => $value,
-						  'valuedoll' => $valuedoll,
-						  'frequency' => $frequency,
-						  //'establishment' => $est,
-						  'country' => $country,
-						  //'awards' => $awards,
-						  'deadline' => $deadline,
-						  'weblink' => $weblink,
-						  'category' => $singlecat,
-						  //'categories' => '',
-						  'datecreated' => $datecreated,
-						 ];
-
-			 // var_dump($postArray);
-			 // exit;
-
-			$postdb = $this->login->doPost($postArray);
-
-				if (!$postdb['status']){
-					$status1 = false;
-				}
-
-				if (!$status1){
-					//echo "fuck";
-					notify('danger', $loginParse['parseMsg'], 'Admin/Dashboard/newpost');
+			if ($postPath !== '') {
+				// check if file exists
+				if(file_exists($finalPath)){
+					// if it exists, overwrite it!
+					unlink($finalPath);
+					move_uploaded_file($_FILES["adminpost"]["tmp_name"]['file'], $finalPath);
 				}else{
-					echo "Please wait, we'll take you back to the dashboard right away...";
-					notify('success', 'Post added sucessfully', 'Admin/Dashboard/newpost');
+					// else just move it to the appropriate folder for upload
+					move_uploaded_file($_FILES["adminpost"]["tmp_name"]['file'], $finalPath);
 				}
+				
+				// select an input fileType for the excel reader
+				$inputFileType = 'Excel2007';
+				// Create a new instance of the excel reader using the inputFileType
+				$objReader = PHPExcel_IOFactory::createReader($inputFileType);
+				$objReader->setReadDataOnly(true);
+				/**  Define how many rows we want to read for each "chunk"  **/ 
+				$chunkSize = 2048; 
+				/**  Create a new Instance of our Read Filter  **/ 
+				$chunkFilter = new chunkReadFilter(); 
+				/**  Tell the Reader that we want to use the Read Filter  **/ 
+				$objReader->setReadFilter($chunkFilter);
+
+				$someArray = [];
+				$anArray = [];
+				$finalArray = [];
+
+				$operations = 0;
+
+				$datecreated = date('Y-m-d h:i:s');
+
+				/**  Loop to read our worksheet in "chunk size" blocks  **/ 
+				for ($startRow = 2; $startRow <= 65536; $startRow += $chunkSize) { 
+				    /**  Tell the Read Filter which rows we want this iteration  **/ 
+				    $chunkFilter->setRows($startRow, $chunkSize); 
+				    /**  Load only the rows that match our filter  **/ 
+				    $objPHPExcel = $objReader->load($finalPath); 
+				    //    Do some processing here 
+				    $someArray = $objPHPExcel->getActiveSheet()->toArray(null, true,true,true);
+				    unset($someArray[1]);
+				} 
+				foreach ($someArray as $key => $value) {
+					$operations++;
+					$anArray = $value;
+					$newArray = $value;
+					// change the array key from column alphabet(A,B...) to database column names
+					// of each array from the excel file.
+					$newArray['title'] = $anArray['A'];
+					$newArray['purpose'] = $anArray['B'];
+					$newArray['eligibility'] = $anArray['C'];
+					$newArray['level'] = $anArray['D'];
+					$newArray['value'] = $anArray['E'];
+					$newArray['valuedoll'] = $anArray['F'];
+					$newArray['frequency'] = $anArray['G']; //Frequency on database is actually Course on sme4me
+					$newArray['country'] = $anArray['H'];
+					$newArray['deadline'] = $anArray['I'];
+					$newArray['weblink'] = $anArray['J'];
+					$newArray['category'] = $anArray['K'];
+					$newArray['datecreated'] = $datecreated;
+					$anArray = $newArray;
+					unset($newArray);
+					unset($anArray['A']);
+					unset($anArray['B']);
+					unset($anArray['C']);
+					unset($anArray['D']);
+					unset($anArray['E']);
+					unset($anArray['F']);
+					unset($anArray['G']);
+					unset($anArray['H']);
+					unset($anArray['I']);
+					unset($anArray['J']);
+					unset($anArray['K']);
+					//unset($anArray['L']);
+					//var_dump($anArray);
+					$this->doIteratedUpload($anArray);
+				}			
+				echo "Please wait, we'll take you back to the dashboard right away...";
+				notify('success', 'Post added sucessfully', 'Admin/Dashboard/newpost');	
+				//exit;
+
+			}else{
+
+				$posttitle = $post['title'];
+				$purpose = $post['purpose'];
+				$eligibility = $post['eligibility'];
+				$level = $post['level'];
+				$value = $post['value'];
+				$valuedoll = $post['valuedoll'];
+				$frequency = $post['freq'];
+				//$est = $post['est'];
+				$country = $post['country'];
+				//$awards = $post['awards'];
+				$deadline = $post['deadline'];
+				$weblink = $post['weblink'];
+				$singlecat = $post['catsingle'];
+				//$multicat = $post['catmulti'];
+				//$datecreated = date('Y-m-d h:i:s');
+
+				// var_dump($multicat);
+				// exit;
+
+				//$multijson = json_encode($multicat);
+
+				if ($posttitle == '' && $purpose == '' && $eligibility == '' && $level == '' && $valuedoll == '' && $frequency == '' && $country == ''
+					&& $deadline == '' && $weblink == '') {
+					notify('danger', 'Fields cannot be empty', 'Admin/Dashboard/newpost');
+				}else{
+					$postArray = ['title' => $posttitle,
+							  'purpose' => $purpose,
+							  'eligibility' => $eligibility,
+							  'level' => $level,
+							  'value' => $value,
+							  'valuedoll' => $valuedoll,
+							  'frequency' => $frequency,
+							  //'establishment' => $est,
+							  'country' => $country,
+							  //'awards' => $awards,
+							  'deadline' => $deadline,
+							  'weblink' => $weblink,
+							  'category' => $singlecat,
+							  //'categories' => '',
+							  'datecreated' => $datecreated,
+							 ];
+
+					 // var_dump($postArray);
+					 // exit;
+
+					$postdb = $this->login->doPost($postArray);
+
+					if (!$postdb['status']){
+						$status1 = false;
+					}
+
+					if (!$status1){
+						//echo "fuck";
+						notify('danger', $loginParse['parseMsg'], 'Admin/Dashboard/newpost');
+					}else{
+						echo "Please wait, we'll take you back to the dashboard right away...";
+						notify('success', 'Post added sucessfully', 'Admin/Dashboard/newpost');
+					}
+				}	
+			}
 		}
 	}
 
@@ -196,4 +288,35 @@ class Dashboard extends CI_Controller {
     		redirect('Admin/Login','refresh');
 		}
     }
+
+    public function doIteratedUpload($array)
+    {
+    	//echo "Uploaded ".$operations." record(s)". "of ". count($secondArray). " records, Please Wait...";
+    	$postdb = $this->login->doPost($array);
+    }
+
 }
+
+/** Define a Read Filter class implementing PHPExcel_Reader_IReadFilter  
+** This class reads through the excel file and uses our definition of
+** rows to start with, and all that.
+*/ 
+class chunkReadFilter implements PHPExcel_Reader_IReadFilter 
+{ 
+    private $_startRow = 0; 
+    private $_endRow   = 0; 
+
+    /**  Set the list of rows that we want to read  */ 
+    public function setRows($startRow, $chunkSize) { 
+        $this->_startRow = $startRow; 
+        $this->_endRow   = $startRow + $chunkSize; 
+    } 
+    public function readCell($column, $row, $worksheetName = '') { 
+        //  Only read the heading row, and the configured rows 
+        if (($row >= 2) ||
+            ($row >= $this->_startRow && $row < $this->_endRow)) { 
+            return true; 
+        } 
+        return false; 
+    } 
+} 

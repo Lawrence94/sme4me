@@ -4,7 +4,8 @@
 	"license": "MIT",
 	"require": {
 		"php": ">=5.2.4",
-		"parse/php-sdk" : "1.1.*"
+		"parse/php-sdk" : "1.1.*",
+		"phpoffice/phpexcel": "dev-develop"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"

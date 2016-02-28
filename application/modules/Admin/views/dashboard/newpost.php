@@ -25,14 +25,21 @@
                 <h3 class="box-title">Add a New Post</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="<?= site_url('Admin/Dashboard/makepost'); ?>" method="post">
+                <form role="form" action="<?= site_url('Admin/Dashboard/makepost'); ?>" method="post" enctype="multipart/form-data">
                   <div class="box-body">
                     
 				 <div class="box-body">
+         <div class="form-group">
+                      <label for="exampleInputPassword1">Excel File</label>
+                      <input type="file" name="adminpost[file]" class="form-control" id="exampleInputPassword1" placeholder="Excel File" accept=".xlsx">
+                      <!-- <input type="text" name="adminpost[purpose]" class="form-control" id="exampleInputPassword1" placeholder="Purpose"> -->
+                      </div>
+
 				<label for="exampleInputEmail1">Opportunity Title</label>
                 <input name="adminpost[title]" class="form-control input-lg" type="text" placeholder="Post Title">
                       
                     </div>
+                    
                     <div class="form-group">
                       <label for="exampleInputPassword1">Purpose </label>
                       <input type="text" name="adminpost[purpose]" class="form-control" id="exampleInputPassword1" placeholder="Purpose">
