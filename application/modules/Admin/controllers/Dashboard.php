@@ -4,7 +4,7 @@ use Parse\ParseObject;
 use Parse\ParseUser;
 use Parse\ParseQuery;
 use Parse\ParseRole;
-include 'PHPExcel_Reader_IReadFilter';
+include trim(dirname(BASEPATH).'/vendor/phpoffice/phpexcel/Classes/PHPExcel.php', '');
 
 class Dashboard extends CI_Controller {
 
