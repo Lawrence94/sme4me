@@ -695,7 +695,7 @@ article img {
 	height:104px;
 	display:block;
 	display:inline-block;
-	background:transparent url(/sites/all/themes/blonde/logo.png) 0 0 no-repeat;
+	background:transparent url(../css/images//logo.png) 0 0 no-repeat;
 	text-indent:-99999px;
 	margin:20px 0 0;
 	background-size:96px 104px;
@@ -704,16 +704,16 @@ article img {
 	display:inline-block;
 	width:80px;
 	height:32px;
-	background:transparent url(../css/images//blonde_logo.png) 0 0 no-repeat;
+	background:transparent url(../css/images//logo.png) 0 0 no-repeat;
 	background-size:80px 32px;
 	text-indent:-99999px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min-device-pixel-ratio:1.5) {
 #header .logo {
-	background-image:url(/sites/all/themes/blonde/logo@2x.png);
+	background-image:url(.../assets-for-website/images/logo.png);
 }
 .footer-logo {
-	background-image:url(../css/images//blonde_logo@2x.png);
+	background-image:url(/css/images//logo.png);
 }
 }
 a:hover {
