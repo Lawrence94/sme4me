@@ -4,6 +4,8 @@ use Parse\ParseObject;
 use Parse\ParseUser;
 use Parse\ParseQuery;
 use Parse\ParseRole;
+//require trim(dirname(BASEPATH).'/vendor/phpoffice/phpexcel/Classes/PHPExcel.php', '');
+//include trim(dirname(BASEPATH).'/vendor/phpoffice/phpexcel/Classes/PHPExcel.php', '');
 
 class Dashboard extends CI_Controller {
 
@@ -29,6 +31,7 @@ class Dashboard extends CI_Controller {
 		//Do your magic here
 	    $this->load->helper(['buildpage_helper']);
 	    $this->load->library(array('Parseinit'));
+	    $this->load->library('excelreader');
 	    $this->load->helper(['notification_helper']);
 	    $this->load->model('login/Login_model', 'login');
 	}
@@ -117,7 +120,7 @@ class Dashboard extends CI_Controller {
 				/**  Define how many rows we want to read for each "chunk"  **/ 
 				$chunkSize = 2048; 
 				/**  Create a new Instance of our Read Filter  **/ 
-				$chunkFilter = new chunkReadFilter(); 
+				$chunkFilter = $this->excelreader; 
 				/**  Tell the Reader that we want to use the Read Filter  **/ 
 				$objReader->setReadFilter($chunkFilter);
 
@@ -296,27 +299,3 @@ class Dashboard extends CI_Controller {
     }
 
 }
-
-/** Define a Read Filter class implementing PHPExcel_Reader_IReadFilter  
-** This class reads through the excel file and uses our definition of
-** rows to start with, and all that.
-*/ 
-class chunkReadFilter implements PHPExcel_Reader_IReadFilter 
-{ 
-    private $_startRow = 0; 
-    private $_endRow   = 0; 
-
-    /**  Set the list of rows that we want to read  */ 
-    public function setRows($startRow, $chunkSize) { 
-        $this->_startRow = $startRow; 
-        $this->_endRow   = $startRow + $chunkSize; 
-    } 
-    public function readCell($column, $row, $worksheetName = '') { 
-        //  Only read the heading row, and the configured rows 
-        if (($row >= 2) ||
-            ($row >= $this->_startRow && $row < $this->_endRow)) { 
-            return true; 
-        } 
-        return false; 
-    } 
-} 
