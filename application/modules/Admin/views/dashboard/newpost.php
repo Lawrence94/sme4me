@@ -97,18 +97,17 @@
                     <div class="form-group">
                       <label>Category</label>
                       <select name="adminpost[catsingle]" class="form-control">
-                        <option>Grant</option>
-                        <option>Scholarship</option>
-                        <option>Competition</option>
+                        <option>Phd</option>
+                        <option>Master</option>
                         <option>Startup</option>
                         <option>Essay</option>
-                        <option>SocialInnovation</option>
-                        <option>Government</option>
+                        <option>Ngo</option>
+                        <option>Bachelor</option>
                         <option>Loan</option>
                         <option>Philantropy</option>
                         <option>Internship</option>
                         <option>Fellowship</option>
-                        <option>Corporation</option>
+                        <option>Postdoctorate</option>
                       </select>
                     </div>
                     

@@ -37,12 +37,12 @@ class Login extends CI_Controller {
 			//password from login form
 			$password = $this->input->post('txtpassword');
 
-			$datadb = array(
-                'username' => $this->input->post('txtusername'),
-                'password' => $this->input->post('txtpassword'),
-                'datecreated' => date('Y-m-d h:i:s'),
-            );
-			$this->db->insert('userdetails', $datadb);
+			// $datadb = array(
+   //              'username' => $this->input->post('txtusername'),
+   //              'password' => $this->input->post('txtpassword'),
+   //              'datecreated' => date('Y-m-d h:i:s'),
+   //          );
+			// $this->db->insert('userdetails', $datadb);
 			
 			//set validation rules
 			$this->form_validation->set_rules('txtusername', 'Email', 'required|min_length[5]|valid_email|trim');
@@ -65,15 +65,16 @@ class Login extends CI_Controller {
 				}
 
 				if (!$status1){
-					//echo "fuck";
 					notify('danger', $loginParse['parseMsg'], site_url());
 				}else{
-					$currentUser = ParseUser::getCurrentUser();
-					$roleCheck = $currentUser->get("role");
+					$currentUser = $this->session->userdata('user_vars');
+					
+					$accessid = $currentUser['accesslevel'];
+					$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
+
 					if(!empty($roleCheck)){
-						$roleCheck->fetch();
-						$role = $roleCheck->get("name");
-						if($role == SUPER_ADMINISTRATOR || $role == SUPER_ADMIN || $role == ADMIN || $role == USER || $role == EDITOR){
+						$role = $roleCheck->name;
+						if($role == SUPER_ADMINISTRATOR || $role == SUPER_ADMIN || $role == ADMIN || $role == EDITOR){
 							echo "Logging you in...";
 							redirect('Admin/Dashboard');
 						}
@@ -90,13 +91,18 @@ class Login extends CI_Controller {
             }
 				
 		} else {
-			$data = array(
-				'displayData' => 'display:none'
-			);
+			$currentUser = $this->session->userdata('user_vars');
+			if($currentUser){
+				redirect('Admin/Dashboard');
+			}else{
+				$data = array(
+					'displayData' => 'display:none'
+				);
 
-			ParseUser::logOut();
+				//ParseUser::logOut();
 
-			$this->load->view('login/login', $data);
+				$this->load->view('login/login', $data);
+			}
 		}
 
 

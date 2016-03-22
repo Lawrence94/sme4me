@@ -27,17 +27,19 @@ function buildPage($view_string, $title = null){
 
 function menu_header(){
         //getting the currently logged in admin
-        $currentUser = ParseUser::getCurrentUser();
+        $CI =& get_instance();
+        $currentUser = $CI->session->userdata('user_vars');
         $firstName = '';
         $lastName = '';
 
         if ($currentUser) {
             // do stuff with the user
-            $firstName = $currentUser->get("firstName");
-            $lastName = $currentUser->get("lastName");
-            $roleCheck = $currentUser->get("role");
-            $roleCheck->fetch();
-            $role = $roleCheck->get("name");
+            $firstName = $currentUser["firstname"];
+            $lastName = $currentUser["lastname"];
+            $accessid = $currentUser['accesslevel'];
+            $roleCheck = $CI->db->get_where('accesslevel', ['id' => $accessid])->row();
+            $role = $roleCheck->name;
+
             return array(
             'firstName' => $firstName,
             'lastName' => $lastName,
@@ -46,6 +48,6 @@ function menu_header(){
 
         } else {
             // show the signup or login page
-            redirect('login','refresh');
+            redirect('Admin/login','refresh');
         }
     }
