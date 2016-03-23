@@ -21,12 +21,14 @@ class Login_model extends CI_Model {
     public function doLogin($username, $password){
 
     	try {
-  		  $this->login($username, $password);
-  			// Do stuff after successful login.
-        $session = $this->session->has_userdata('user_vars');
-        
-  			// return true to the Login controller so that it can load the dashBoard
-  			return ['status' => true];
+  		  $loginMysql = $this->login($username, $password);
+        $isLogin = $loginMysql['status'];
+
+        if($isLogin){
+          return ['status' => true,];
+        }else{
+          return ['status' => false, 'parseMsg' => 'username or password incorrect'];
+        }
 
 			} catch (Exception $ex) {
 				//return false to the Login controller along with the error message 
@@ -51,8 +53,11 @@ class Login_model extends CI_Model {
     public function login($username, $password)
     {
       $details = $this->db->get_where('userdetails', ['username' => $username, 'password' => $password])->row();
-      $key = sha1($details->username.'_'.$details->aid);
-      $userdetails = ['user_vars' => ['userid' => $details->id,
+      if($details == null){
+        return ['status' => false,];
+      }else{
+        $key = sha1($details->username.'_'.$details->aid);
+        $userdetails = ['user_vars' => ['userid' => $details->id,
                                       'username' => $details->username,
                                       'email' => $details->username,
                                       'firstname' => $details->firstname,
@@ -61,7 +66,8 @@ class Login_model extends CI_Model {
                                       'k' => $key,
                                      ]
                      ];
-      return $this->session->set_userdata( $userdetails );
+        return ['status' => true, 'session' => $this->session->set_userdata( $userdetails )];
+      }
     }
 	
 }
