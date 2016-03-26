@@ -134,6 +134,7 @@ class Dashboard extends CI_Controller {
 
 				/**  Loop to read our worksheet in "chunk size" blocks  **/ 
 				for ($startRow = 2; $startRow <= 65536; $startRow += $chunkSize) { 
+					set_time_limit(0);
 				    /**  Tell the Read Filter which rows we want this iteration  **/ 
 				    $chunkFilter->setRows($startRow, $chunkSize); 
 				    /**  Load only the rows that match our filter  **/ 
@@ -143,6 +144,9 @@ class Dashboard extends CI_Controller {
 				    unset($someArray[1]);
 				} 
 				foreach ($someArray as $key => $value) {
+
+					set_time_limit(0);
+
 					$operations++;
 					$anArray = $value;
 					$newArray = $value;
@@ -173,7 +177,7 @@ class Dashboard extends CI_Controller {
 					unset($anArray['I']);
 					unset($anArray['J']);
 					unset($anArray['K']);
-					//unset($anArray['L']);
+					unset($anArray['L']);
 					//var_dump($anArray);
 					$this->doIteratedUpload($anArray);
 				}			
