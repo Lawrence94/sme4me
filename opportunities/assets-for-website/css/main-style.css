@@ -826,7 +826,7 @@ a.home-page-button {
 	width:75px;
 	height:64px;
 	display:block;
-	background:transparent url(../css/images//home-corner-icon.png) no-repeat 0 0;
+	background:transparent url(../css/images//home-corner-icon.png) no-repeat 0 0;
 	z-index:200;
 	overflow:hidden;
 	text-indent:-10000em;

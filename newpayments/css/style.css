@@ -216,7 +216,7 @@ svg.svg-sofort {
   line-height: 48px;
   border-bottom: 1px solid #bbb;
   background: #fafafa;
-  cursor: pointer;
+  cursor: pointer; 
 }
 
 .button:hover {
@@ -288,6 +288,7 @@ svg.svg-sofort {
     left: 23px;
   }
 }
+
 /*
 * Breakpoint
 **********************************************************/
@@ -391,3 +392,4 @@ svg.svg-sofort {
     border-top: 1px solid #bbb;
   }
 }
+
