@@ -48,7 +48,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo site_url('Admin/Dashboard/newpost');?>"><i class="fa fa-circle-o"></i> New Post</a></li>
-                <li><a href="<?php echo site_url('Admin/Dashboard/newpost');?>"><i class="fa fa-circle-o"></i> All Posts</a></li>
+                <li><a href="<?php echo site_url('Admin/Dashboard/allpost');?>"><i class="fa fa-circle-o"></i> All Posts</a></li>
               </ul>
             </li>
       <li class="treeview active">
@@ -57,8 +57,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="general.html"><i class="fa fa-circle-o"></i> New Page</a></li>
-                <li><a href="editors.html"><i class="fa fa-circle-o"></i> All Pages</a></li>
+                <li class="active"><a href="#"><i class="fa fa-circle-o"></i> New Page</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> All Pages</a></li>
               </ul>
             </li>
             <li>

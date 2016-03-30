@@ -91,6 +91,21 @@ class Dashboard extends CI_Controller {
 		}
 	}
 
+	public function allpost()
+	{
+		$currentUser = $this->session->userdata('user_vars');
+		$adminName = $this->allpost_header();
+		if ($currentUser){		
+		
+			$dashView = $this->load->view('dashboard/allpost', $adminName, true);
+			buildPage($dashView, 'Dashboard - All Post');
+		}
+		else{
+			echo 'hey';
+			redirect('Admin/Login', 'refresh');
+		}
+	}
+
 	public function makepost()
 	{
 		if ($this->input->post('adminpost')) {
@@ -276,6 +291,50 @@ class Dashboard extends CI_Controller {
         	'lastName' => $lastName,
         	'redirect' => $url,
         	'role' => $role,
+        	'active' => $cssClass,
+        	'active2' => $cssClass1,
+        	'active1' => $cssClass2,
+        	'active4' => $cssClass1,
+        	'active3' => $cssClass3,
+        	'active5' => $cssClass1,
+        	);
+
+		} else {
+    		// show the signup or login page
+    		redirect('Admin/Login','refresh');
+		}
+    }
+
+    public function allpost_header(){
+
+		//getting the currently logged in admin
+		$currentUser = $this->session->userdata('user_vars');;
+		$firstName = '';
+		$lastName = '';
+		$url = 'Admin/Dashboard';
+		$cssClass = 'active';
+		$cssClass1 = '""';
+		$cssClass2 = '""';
+		$cssClass3 = '""';
+		if ($currentUser) {
+    		// do stuff with the user
+    		$firstName = $currentUser['firstname'];
+    		$lastName = $currentUser["lastname"];
+    		$username = $currentUser["username"];
+    		$accessid = $currentUser['accesslevel'];
+			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
+			$posts = $this->db->get_where('posts', ['status' => '1'])->result();
+			// var_dump($posts);
+			// exit;
+    		$role = $roleCheck->name;
+
+    		return array(
+    		'displayData' => 'display:none',
+        	'firstName' => $firstName,
+        	'lastName' => $lastName,
+        	'redirect' => $url,
+        	'role' => $role,
+        	'posts' => $posts,
         	'active' => $cssClass,
         	'active2' => $cssClass1,
         	'active1' => $cssClass2,
