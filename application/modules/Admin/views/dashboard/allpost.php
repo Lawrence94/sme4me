@@ -1,4 +1,6 @@
 <link rel='stylesheet prefetch' href='http://findercdn.com.au/static/2165/css/static.min.css'>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="<?php echo site_url();?>assets/js/add_company.js"></script>
 
 <!-- <link rel="stylesheet" href="<?php echo site_url();?>assets/postedittable/css/style.css"> -->
 
@@ -48,8 +50,10 @@
                             <td    ><?= $post->eligibility ?></td>
                             <td    ><?= $post->deadline ?></td>
                             <td    ><?= $post->category ?></td>
-                            <td    ><a href="#" data-toggle="tab">Edit</a><br> 
-                                    <a href="#" data-toggle="tab">Expire</a>
+                            <td    ><a href="<?php echo site_url('Admin/Dashboard/editpost/'. $post->id);?>">Edit</a><br> 
+                                    <div class="exp">
+                                      <a class="expire" data-id="<?php echo $post->id ?>" data-url="<?php echo site_url('Admin/Dashboard/expire/'. $post->id);?>" href="#" data-toggle="tab">Expire</a>
+                                    </div>
                             </td>
                         </tr>
                       <?php }  ?>

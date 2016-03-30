@@ -106,6 +106,87 @@ class Dashboard extends CI_Controller {
 		}
 	}
 
+	public function editpost($postid)
+	{
+		if ($this->input->post('adminpost')) {
+			$post = $this->input->post('adminpost');
+			$status1 = true;
+
+			$posttitle = $post['title'];
+				$purpose = $post['purpose'];
+				$eligibility = $post['eligibility'];
+				$level = $post['level'];
+				$value = $post['value'];
+				$valuedoll = $post['valuedoll'];
+				$frequency = $post['freq'];
+				//$est = $post['est'];
+				$country = $post['country'];
+				//$awards = $post['awards'];
+				$deadline = $post['deadline'];
+				$weblink = $post['weblink'];
+				$singlecat = $post['catsingle'];
+				//$multicat = $post['catmulti'];
+				//$datecreated = date('Y-m-d h:i:s');
+
+				// var_dump($multicat);
+				// exit;
+
+				//$multijson = json_encode($multicat);
+
+				if ($posttitle == '' && $purpose == '' && $eligibility == '' && $level == '' && $valuedoll == '' && $frequency == '' && $country == ''
+					&& $deadline == '' && $weblink == '') {
+					notify('danger', 'Fields cannot be empty', 'Admin/Dashboard/editpost/'. $postid);
+				}else{
+					$postArray = ['title' => $posttitle,
+								  'purpose' => $purpose,
+								  'eligibility' => $eligibility,
+								  'level' => $level,
+								  'value' => $value,
+								  'valuedoll' => $valuedoll,
+								  'frequency' => $frequency,
+								  //'establishment' => $est,
+								  'country' => $country,
+								  //'awards' => $awards,
+								  'deadline' => $deadline,
+								  'weblink' => $weblink,
+								  'category' => $singlecat,
+								  //'categories' => '',
+								  //'datecreated' => $datecreated,
+								 ];
+
+					 // var_dump($postArray);
+					 // exit;
+
+					$postdb = $this->login->editPost($postArray, $postid);
+
+					if (!$postdb['status']){
+						$status1 = false;
+					}
+
+					if (!$status1){
+						//echo "fuck";
+						notify('danger', 'There was an unkown error, please try again', 'Admin/Dashboard/editpost/'. $postid);
+					}else{
+						echo "Please wait, we'll take you back to the dashboard right away...";
+						notify('success', 'Post added sucessfully', 'Admin/Dashboard/editpost/'. $postid);
+					}
+				}	
+
+		}else{
+			$currentUser = $this->session->userdata('user_vars');
+			$adminName = $this->editpost_header($postid);
+			if ($currentUser){		
+			
+				$dashView = $this->load->view('dashboard/editpost', $adminName, true);
+				buildPage($dashView, 'Dashboard - Edit Post');
+			}
+			else{
+				echo 'hey';
+				redirect('Admin/Login', 'refresh');
+			}
+		}
+	}
+
 	public function makepost()
 	{
 		if ($this->input->post('adminpost')) {
@@ -349,10 +430,73 @@ class Dashboard extends CI_Controller {
 		}
     }
 
+    public function editpost_header($postid){
+
+		//getting the currently logged in admin
+		$currentUser = $this->session->userdata('user_vars');;
+		$firstName = '';
+		$lastName = '';
+		$url = 'Admin/Dashboard';
+		$cssClass = 'active';
+		$cssClass1 = '""';
+		$cssClass2 = '""';
+		$cssClass3 = '""';
+		if ($currentUser) {
+    		// do stuff with the user
+    		$firstName = $currentUser['firstname'];
+    		$lastName = $currentUser["lastname"];
+    		$username = $currentUser["username"];
+    		$accessid = $currentUser['accesslevel'];
+			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
+			$post = $this->db->get_where('posts', ['id' => $postid])->row();
+			// var_dump($post);
+			// exit;
+    		$role = $roleCheck->name;
+
+    		return array(
+    		'displayData' => 'display:none',
+        	'firstName' => $firstName,
+        	'lastName' => $lastName,
+        	'redirect' => $url,
+        	'role' => $role,
+        	'post' => $post,
+        	'active' => $cssClass,
+        	'active2' => $cssClass1,
+        	'active1' => $cssClass2,
+        	'active4' => $cssClass1,
+        	'active3' => $cssClass3,
+        	'active5' => $cssClass1,
+        	);
+
+		} else {
+    		// show the signup or login page
+    		redirect('Admin/Login','refresh');
+		}
+    }
+
     public function doIteratedUpload($array)
     {
     	//echo "Uploaded ".$operations." record(s)". "of ". count($secondArray). " records, Please Wait...";
     	$postdb = $this->login->doPost($array);
+    }
+
+    public function expire($postid)
+    {
+    	try{
+    		$datadb = ['status' => 0];
+	    	$this->db->where('id', $postid);
+			$this->db->update('posts', $datadb); 
+	    	$result = ['result' => 'true'
+	    			  ];
+			echo json_encode($result);
+    	}
+    	catch(Exception $ex){
+    		$result[] = ['result' => 'false',
+    				     'baseUrl' => site_url(),
+	    			  	];
+		    echo json_encode($result);
+    	}
+    	
     }
 
 }

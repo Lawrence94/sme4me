@@ -50,6 +50,19 @@ class Login_model extends CI_Model {
       }
     }
 
+    public function editPost($postArray, $postid)
+    {
+      # code...
+      try {
+        $this->db->where('id', $postid);
+        $this->db->update('posts', $postArray);
+        return ['status' => true,];
+      } catch (Exception $ex) {
+        return ['status' => false, 'parseMsg' => 'There was an error, please try again'];
+      }
+      
+    }
+
     public function login($username, $password)
     {
       $details = $this->db->get_where('userdetails', ['username' => $username, 'password' => $password])->row();
