@@ -193,9 +193,13 @@ class Dashboard extends CI_Controller {
 			$post = $this->input->post('adminpost');
 			$status1 = true;
 
+			$postPath1 = $_FILES['adminpost']['name']['voucherfile'];
+
 			$postPath = $_FILES['adminpost']['name']['file'];
 			$filePath = 'assets/uploads';
+
 			$finalPath = $filePath . '/'.$postPath;
+			$finalPath1 = $filePath . '/'.$postPath1;
 
 			if ($postPath !== '') {
 				// check if file exists
@@ -281,7 +285,82 @@ class Dashboard extends CI_Controller {
 				notify('success', 'Post added sucessfully', 'Admin/Dashboard/newpost');	
 				//exit;
 
-			}else{
+			}
+			elseif ($postPath1 !== '') {
+				// check if file exists
+				if(file_exists($finalPath1)){
+					// if it exists, overwrite it!
+					unlink($finalPath1);
+					move_uploaded_file($_FILES["adminpost"]["tmp_name"]['voucherfile'], $finalPath1);
+				}else{
+					// else just move it to the appropriate folder for upload
+					move_uploaded_file($_FILES["adminpost"]["tmp_name"]['voucherfile'], $finalPath1);
+				}
+				
+				// select an input fileType for the excel reader
+				$inputFileType = 'Excel2007';
+				// Create a new instance of the excel reader using the inputFileType
+				$objReader = PHPExcel_IOFactory::createReader($inputFileType);
+				$objReader->setReadDataOnly(true);
+				/**  Define how many rows we want to read for each "chunk"  **/ 
+				$chunkSize = 2048; 
+				/**  Create a new Instance of our Read Filter  **/ 
+				$chunkFilter = $this->excelreader; 
+				/**  Tell the Reader that we want to use the Read Filter  **/ 
+				$objReader->setReadFilter($chunkFilter);
+
+				$someArray = [];
+				$anArray = [];
+				$finalArray = [];
+
+				$operations = 0;
+
+				$datecreated = date('Y-m-d h:i:s');
+
+				/**  Loop to read our worksheet in "chunk size" blocks  **/ 
+				for ($startRow = 2; $startRow <= 65536; $startRow += $chunkSize) { 
+					set_time_limit(0);
+				    /**  Tell the Read Filter which rows we want this iteration  **/ 
+				    $chunkFilter->setRows($startRow, $chunkSize); 
+				    /**  Load only the rows that match our filter  **/ 
+				    $objPHPExcel = $objReader->load($finalPath1); 
+				    //    Do some processing here 
+				    $someArray = $objPHPExcel->getActiveSheet()->toArray(null, true,true,true);
+				    unset($someArray[1]);
+				} 
+				
+				foreach ($someArray as $key => $value) {
+
+					set_time_limit(0);
+
+					$operations++;
+					$anArray = $value;
+					$newArray = $value;
+					// change the array key from column alphabet(A,B...) to database column names
+					// of each array from the excel file.
+					$newArray['vouchercode'] = $anArray['A'];
+					$anArray = $newArray;
+					unset($newArray);
+					unset($anArray['A']);
+					unset($anArray['B']);
+					unset($anArray['C']);
+					unset($anArray['D']);
+					unset($anArray['E']);
+					unset($anArray['F']);
+					unset($anArray['G']);
+					unset($anArray['H']);
+					unset($anArray['I']);
+					unset($anArray['J']);
+										
+					$this->doVoucherUpload($anArray);
+				}	
+				//exit;		
+				echo "Please wait, we'll take you back to the dashboard right away...";
+				notify('success', 'Post added sucessfully', 'Admin/Dashboard/newpost');	
+				//exit;
+
+			}
+			else{
 
 				$posttitle = $post['title'];
 				$purpose = $post['purpose'];
@@ -478,6 +557,11 @@ class Dashboard extends CI_Controller {
     {
     	//echo "Uploaded ".$operations." record(s)". "of ". count($secondArray). " records, Please Wait...";
     	$postdb = $this->login->doPost($array);
+    }
+
+    public function doVoucherUpload($array)
+    {
+    	$postdb = $this->login->doVoucherUpload($array);
     }
 
     public function expire($postid)

@@ -41,7 +41,7 @@
               </a>
             </li>
                      
-            <li class="treeview">
+            <li class="treeview active">
               <a href="#">
                 <i class="fa fa-edit"></i> <span>Post</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -51,29 +51,7 @@
                 <li><a href="<?php echo site_url('Admin/Dashboard/allpost');?>"><i class="fa fa-circle-o"></i> All Posts</a></li>
               </ul>
             </li>
-      <li class="treeview active">
-              <a href="#">
-                <i class="fa fa-edit"></i> <span>Page</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li class="active"><a href="#"><i class="fa fa-circle-o"></i> New Page</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> All Pages</a></li>
-              </ul>
-            </li>
-            <li>
-            
-            <li>
-              <a href="pages/calendar.html">
-                <i class="fa fa-calendar"></i> <span>Calendar</span>
-                <small class="label pull-right bg-red">3</small>
-              </a>
-            </li>
-
-            <li class="header">LABELS</li>
-            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+      
           </ul>
         </section>
         <!-- /.sidebar -->

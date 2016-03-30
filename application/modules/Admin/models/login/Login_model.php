@@ -50,6 +50,15 @@ class Login_model extends CI_Model {
       }
     }
 
+    public function doVoucherUpload($array)
+    {
+      if($this->db->insert('vouchers', $array)){
+        return ['status' => true,];
+      }else{
+        return ['status' => false, 'parseMsg' => 'There was an error, please try again'];
+      }
+    }
+
     public function editPost($postArray, $postid)
     {
       # code...
