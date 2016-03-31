@@ -1,0 +1,224 @@
+
+/*......................................................
+	DESKTOP LAYOUT
+........................................................*/
+@media only screen and (min-width: 1200px){
+	
+}
+@media only screen and (min-width: 980px) and (max-width: 1199px){
+
+	/* LAYOUT-STRUCTURE
+	--------------------------------*/
+	.inner-wrapper .inner-container{ width: 880px; }
+	.md-modal{ min-width: 880px; }
+	.md-content .container{ width: 780px; }
+
+	/* NAVIGATION
+	--------------------------------*/
+	.navigation-wrp{ position: inherit; top: 0; }
+	.navigation-wrp .nav-box.left{ left: 0; }
+	.navigation-wrp .nav-box.right{ right: 0; }
+}
+
+
+
+/*......................................................
+	TABLET LAYOUT
+........................................................*/
+@media only screen and (min-width: 768px) and (max-width: 979px){
+
+	/* LAYOUT-STRUCTURE
+	--------------------------------*/
+	.inner-wrapper .inner-container{ width: 688px; }
+	.md-modal{ min-width: 688px; height: 100%; }
+	.md-content .container{ width: 588px; }
+
+	/* NAVIGATION
+	--------------------------------*/
+	.navigation-wrp{ position: inherit; top: 0; }
+	.navigation-wrp .nav-box.left{ left: 0; }
+	.navigation-wrp .nav-box.right{ right: 0; }
+
+	/* ABOUT-US
+	--------------------------------*/
+	.about-us .info-box-wrp .col-md-4{
+		float: none;
+		width: 100%;
+		margin-bottom: 2px;
+	}
+
+	/* CONTACT-US
+	--------------------------------*/
+	.contact-us .address-box-wrp .col-md-4{
+		width: 100%;
+		float: none;
+		margin-bottom: 2px;
+	}
+}
+
+
+
+/*......................................................
+	MOBILE LAYOUT
+........................................................*/
+@media only screen and (min-width: 600px) and (max-width: 767px){
+
+	/* LAYOUT-STRUCTURE
+	--------------------------------*/
+	.inner-wrapper .inner-container{ width: 520px; }
+	.md-modal{ min-width: 520px; height: 100%; }
+	.md-content .container{ width: 420px; }
+	.main-box{ width: 500px; height: 500px; }
+	.mobile-version .main-box{ margin-bottom: 30px; }
+	.main-box .inner-box .inner-wrapper{ padding-top: 0; }
+	.mobile-version .logo{ margin-bottom: 30px; }
+	.mobile-version .tag-line{ margin-bottom: 30px; }
+
+	/* ANALOG-CLOCK
+	--------------------------------*/
+	#bclock{ top: -17px; }
+
+	/* COUNTDOWN-CLOCK
+	--------------------------------*/
+	#countdown_dashboard_mob{ height: auto; }
+	.dash{ min-width: 90px; min-height: 90px; }
+	.dash .digit{ font-size: 60px; min-width: 35px; }
+	.dash.days_dash{
+		width: 100%;
+		height: 110px;
+		margin-bottom: 15px;
+	}
+	.dash.days_dash .digit{ font-size: 90px; }
+
+}
+@media only screen and (min-width: 480px) and (max-width: 599px){
+
+	/* LAYOUT-STRUCTURE
+	--------------------------------*/
+	.inner-wrapper .inner-container{ width: 400px; }
+	.md-modal{ min-width: 400px; height: 100%; }
+	.md-content .container{ width: 300px; }
+	.main-box{ width: 400px; height: 400px; }
+	.mobile-version .main-box{ margin-bottom: 30px; }
+	.main-box .inner-box .inner-wrapper{ padding-top: 0; }
+	.mobile-version .logo{ margin-bottom: 30px; }
+	.mobile-version .tag-line{ margin-bottom: 30px; }
+
+	/* ANALOG-CLOCK
+	--------------------------------*/
+	#bclock{ top: -10px; }
+
+	/* COUNTDOWN-CLOCK
+	--------------------------------*/
+	#countdown_dashboard_mob{ height: auto; }
+	.dash{ min-width: 80px; min-height: 75px; }
+	.dash .digit{ font-size: 50px; min-width: 30px; }
+	.dash.days_dash{
+		width: 100%;
+		height: 100px;
+		margin-bottom: 15px;
+	}
+	.dash.days_dash .digit{ font-size: 80px; }
+
+	/* NAVIGATION
+	--------------------------------*/
+	.navigation-wrp .nav-box{ margin: 0 10px; }
+
+}
+@media only screen and (min-width: 320px) and (max-width: 479px){
+
+	/* LAYOUT-STRUCTURE
+	--------------------------------*/
+	.inner-wrapper .inner-container{ width: 320px; }
+	.md-modal{ min-width: 100%; height: 100%; }
+	.md-content .container{ width: 250px; }
+	.main-box{ width: 280px; height: 280px; }
+	.mobile-version .main-box{ margin-bottom: 30px; padding: 5px; }
+	.main-box .inner-box .inner-wrapper{ padding-top: 0; }
+	.mobile-version .logo{ margin-bottom: 30px; }
+	.mobile-version .tag-line{ margin-bottom: 30px; }
+
+	/* ANALOG-CLOCK
+	--------------------------------*/
+	#bclock{ top: -6px; }
+
+	/* COUNTDOWN-CLOCK
+	--------------------------------*/
+	#countdown_dashboard_mob{ height: auto; }
+	.dash{ min-width: 51px; min-height: 52px; }
+	.dash .digit{ font-size: 35px; min-width: 22px; }
+	.dash.days_dash{
+		width: 100%;
+		height: 62px;
+		margin-bottom: 7px;
+	}
+	.dash.days_dash .digit{ font-size: 50px; }
+	.dash_title{ font-size: 8px; }
+
+	/* SEPARATOR
+	--------------------------------*/
+	.separator-wrp{ margin-top: 8px; margin-bottom: 10px; }
+	.separator{ width: 14px; height: 14px; }
+	.separator-wrp:after, 
+	.separator-wrp:before{
+		width: 50px;
+	}
+	.separator-wrp:before{ right: -50px; }
+	.separator-wrp:after{ left: -50px; }
+
+} 
+@media only screen and (min-width: 320px) and (max-width: 767px){
+
+	/* LAYOUT-STRUCTURE
+	--------------------------------*/
+	.md-content .container{ padding: 50px 0 !important; }
+	.main-wrapper{ padding: 50px 0; }
+	.desktop-version{ display: none; }
+	.mobile-version{ display: block; }
+	.title .separator-wrp{ margin-top: 0; margin-bottom: 5px; }
+	.title p{ font-size: 18px; }
+
+	/* ANALOG-CLOCK
+	--------------------------------*/
+	#aclock{ display: none; }
+	#bclock{ display: block; }
+
+	/* NAVIGATION
+	--------------------------------*/
+	.navigation-wrp{ position: inherit; top: 0; }
+	.navigation-wrp .nav-box{ 
+		float: inherit !important; 
+		margin: auto; 
+		margin-top: -2px;
+	}
+	.navigation-wrp .nav-box.left,
+	.color-version .navigation-wrp .nav-box.left{ 
+		left: 0; 
+	}
+	.navigation-wrp .nav-box.right,
+	.color-version .navigation-wrp .nav-box.right{ 
+		right: 0; 
+	}
+	.color-version .navigation-wrp .nav-box{ margin: 1px auto; }
+	.color-version .navigation-wrp .nav-box.left:before, 
+	.color-version .navigation-wrp .nav-box.right:before{
+		display: none;
+	}
+
+	/* ABOUT-US
+	--------------------------------*/
+	.about-us .info-box-wrp .info-box{ margin-bottom: 2px; }
+
+	/* CONTACT-US
+	--------------------------------*/
+	.contact-us .address-box{ margin-bottom: 2px; min-height: 70px; }
+	.address-box .icon{ width: 60px; height: 60px; }
+	.address-box .icon i{ font-size: 22px; }
+	.address-box .text{ 
+		min-height: 70px;
+		padding-left: 10px; 
+		padding-right: 10px; 
+	}
+	.address-box .text h4{ font-size: 16px; }
+	
+}

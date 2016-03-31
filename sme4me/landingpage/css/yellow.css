@@ -1,0 +1,370 @@
+/**
+ * ===============================
+ *  Defult CSS 
+ * ===============================
+ */
+p {
+  color: rgba(0, 0, 0, 0.7);
+}
+/**
+ * ===============================
+ *  Section Heading Section Defult Style 
+ * ===============================
+ */
+.section-heading {
+  color: rgba(0, 0, 0, 0.9);
+}
+.section-heading:after {
+  background: url('../../../images/shape-yellow.png');
+}
+.section-header .section-heading-normal {
+  color: rgba(0, 0, 0, 0.8);
+}
+.section-header p {
+  color: rgba(0, 0, 0, 0.7);
+}
+/**
+ * ===============================
+ *   Defult Button Style
+ * ===============================
+ */
+.btn.btn-fill {
+  background-color: #F49B17;
+  border-color: #F49B17;
+}
+.btn.btn-fill:hover {
+  background-color: #dab418 !important;
+  border-color: #dab418 !important;
+}
+.btn.btn-border {
+  border-color: #F49B17;
+}
+.btn.btn-border:hover {
+  background-color: #F49B17;
+}
+.btn-text-link a {
+  color: #F49B17;
+}
+.btn-text-link a:hover {
+  color: #dab418 !important;
+}
+/**
+ * =============================
+ * Form Defult Style
+ * =============================
+ */
+.single-form .input-group .btn:hover {
+  background-color: #dab418 !important;
+}
+.outer-border.single-form .input-group .btn {
+  background-color: #F49B17;
+}
+/**
+ * ================================
+ * Navbar Style 
+ * ================================
+ */
+.header-nav {
+  /* After Fixed In Top */
+}
+.header-nav.navbar-home .nav li .btn {
+  background-color: #F49B17;
+}
+.header-nav.navbar-home .nav li .btn:hover {
+  background-color: #dab418 !important;
+  border-color: #dab418 !important;
+}
+/**
+ * ================================
+ * Header Contant Style
+ * ================================
+ */
+/*  Header Contant Style  */
+/*  ====================  */
+.header-body .header-contant-left .single-form .input-group .form-control {
+  color: #F49B17;
+}
+.header-body .header-contant-left .single-form .input-group .form-control::-webkit-input-placeholder {
+  color: rgba(236, 206, 82, 0.7) !important;
+}
+.header-body .header-contant-left .single-form .input-group .form-control:-moz-placeholder {
+  color: rgba(236, 206, 82, 0.7) !important;
+}
+.header-body .header-contant-left .single-form .input-group .form-control::-moz-placeholder {
+  color: rgba(236, 206, 82, 0.7) !important;
+}
+.header-body .header-contant-left .single-form .input-group .form-control:-ms-input-placeholder {
+  color: rgba(236, 206, 82, 0.7) !important;
+}
+.header-body .header-contant-left .single-form .input-group .form-control:hover {
+  color: #F49B17 !important;
+}
+/**
+ * =========================
+ * Sponsors Section
+ * =========================
+ */
+.sponsors {
+  background-color: #f3f4ef;
+}
+/**
+ * ==========================
+ * Features Defult Style
+ * ==========================
+ */
+/* Features Defult Style */
+.features .each-item .fa {
+  color: #F49B17;
+}
+.features-hover .each-item:hover .fa {
+  background-color: #F49B17;
+}
+/**
+ * =============================
+ * EASY FEATURES AVAILABLE 
+ * =============================
+ */
+.easy-features-available {
+  background: #ffffff;
+}
+/**
+ * ==============================
+ * Get Our App Section
+ * ==============================
+ */
+.get-our-app-bg {
+  background-color: #ffffff;
+}
+.get-our-app .single-form .btn {
+  background-color: #F49B17;
+}
+/**
+ * ========================================
+ * description Info Inner
+ * ========================================
+ */
+.description-info-inner ul li {
+  color: rgba(0, 0, 0, 0.7);
+}
+.description-info-inner ul li:after {
+  background-color: #F49B17;
+}
+.description-info-inner-2 ul li {
+  color: rgba(0, 0, 0, 0.7);
+}
+.description-info-inner-2 ul li:before {
+  color: #F49B17;
+}
+.description-info-inner-2 ul li:hover:before {
+  background-color: #F49B17;
+}
+/**
+ * ======================
+ * Pricing Table Section 
+ * ======================
+ */
+.pricing-table {
+  background-color: #f3f4ef;
+}
+.table-single {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+.table-single .important {
+  background-color: #F49B17;
+}
+.table-single .important:after {
+  border-top: 38px solid #F49B17;
+}
+.table-single .meta-price {
+  color: #000000;
+}
+.table-single .meta-price .rate:after {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+.table-single .button .btn {
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #000000;
+}
+.table-single:hover .meta-price .rate {
+  background-color: #F49B17;
+}
+.table-single:hover .button .btn {
+  border-color: #F49B17;
+  background-color: #F49B17;
+}
+/**
+ * ====================================
+ * Newsletter Form Style
+ * ====================================
+ */
+.subscribe-newsletter {
+  background-color: #F49B17;
+}
+.subscribe-newsletter .input-group .form-control:hover,
+.subscribe-newsletter .input-group .btn:hover {
+  color: #F49B17;
+}
+.subscribe-newsletter .input-group .btn:hover {
+  background-color: #171719 !important;
+}
+/**
+ * ===============================
+ * Subscription and contact  "MESSAGE"
+ * ===============================
+ */
+.subscription-success,
+.subscription-failed {
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+/**
+ * ======================
+ * Team Section
+ * ======================
+ */
+.team {
+  background-color: #ffffff;
+}
+.team .team-contant .each-member .member-detail .name {
+  color: rgba(0, 0, 0, 0.8);
+}
+.team .team-contant .each-member .member-detail .detail {
+  color: rgba(0, 0, 0, 0.7);
+}
+/**
+ * =========================================
+ * Image Gallery Section
+ * =========================================
+ */
+.image-gallery {
+  background-color: #ffffff;
+}
+.image-gallery #slider .owl-page span {
+  border: 1px solid #F49B17 !important;
+}
+.image-gallery #slider .owl-page.active span {
+  background-color: #F49B17 !important;
+}
+/**
+ * =========================================
+ * Download Section
+ * =========================================
+ */
+.download {
+  background-color: #ffffff;
+}
+.download .button-group .btn {
+  background-color: #F49B17;
+}
+/**
+ * ===========================
+ * Footer Section 
+ * ===========================
+ */
+.footer {
+  background-color: #18181c;
+}
+.footer .copyright p {
+  color: rgba(255, 255, 255, 0.7);
+}
+.footer .copyright p a {
+  color: #F49B17;
+}
+.footer .copyright p a:hover {
+  color: #dab418 !important;
+}
+.social-icon ul li a {
+  color: #FFFFFF;
+  font-weight: bolder;
+}
+/**
+ * ================================
+ * Some Features Section
+ * ================================
+ */
+.some-feature-background {
+  background-color: #ffffff;
+}
+.some-feature .section-header .section-heading {
+  color: rgba(255, 255, 255, 0.9);
+}
+.some-feature .section-header p {
+  color: rgba(255, 255, 255, 0.7);
+}
+.some-feature .features .detail h4 {
+  color: #F49B17;
+}
+.some-feature .features .detail p {
+  color: rgba(255, 255, 255, 0.7);
+}
+/**
+ * =============================
+ * Client's Feedback Section
+ * =============================
+ */
+.client-feedback {
+  background-color: #ffffff;
+}
+.client-feedback-contant .each-item figure {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+.client-feedback-contant .each-item .quote-sym .fa {
+  color: rgba(0, 0, 0, 0.15);
+}
+.client-feedback-contant .each-item blockquote {
+  color: rgba(0, 0, 0, 0.7);
+}
+.client-feedback-contant .each-item .rating li .fa {
+  color: #F49B17;
+}
+.client-feedback-contant .each-item figcaption img {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+.client-feedback-contant .each-item figcaption .name {
+  color: rgba(0, 0, 0, 0.5);
+}
+.client-feedback-contant .each-item figcaption cite {
+  color: #F49B17;
+}
+/**
+ * =========================
+ * Free Trial Section
+ * =========================
+ */
+.free-trial-bg {
+  background-color: #ffffff;
+}
+.free-trial .section-header .section-heading {
+  color: rgba(255, 255, 255, 0.9);
+}
+.free-trial .section-header p {
+  color: rgba(255, 255, 255, 0.7);
+}
+/**
+ * =========================
+ * Contact Us
+ * =========================
+ */
+.contact-us {
+  background-color: #f3f4ef;
+}
+.contact-us .contact-us-body .btn {
+  color: #F49B17;
+}
+/**
+ * =========================================
+ * Collapse CSS
+ * =========================================
+ */
+.collapse-area {
+  background-color: #ffffff;
+}
+@media (max-width: 767px) {
+  /**
+     * ================================
+     * Navbar Style 
+     * ================================
+     */
+  .header-nav .navbar-collapse.in {
+    border-top-color: rgba(236, 206, 82, 0.9);
+  }
+}
