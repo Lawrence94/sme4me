@@ -17,6 +17,7 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
+<script src='http://findercdn.com.au/static/2165/js/static.min.js'></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="<?php echo site_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->

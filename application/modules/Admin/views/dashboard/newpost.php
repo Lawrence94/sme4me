@@ -30,8 +30,13 @@
                     
 				 <div class="box-body">
          <div class="form-group">
-                      <label for="exampleInputPassword1">Excel File</label>
+                      <label for="exampleInputPassword1">Opportunities Excel File</label>
                       <input type="file" name="adminpost[file]" class="form-control" id="exampleInputPassword1" placeholder="Excel File" accept=".xlsx">
+                      <!-- <input type="text" name="adminpost[purpose]" class="form-control" id="exampleInputPassword1" placeholder="Purpose"> -->
+                      </div>
+          <div class="form-group">
+                      <label for="exampleInputPassword1">Voucher/Subscription Excel File</label>
+                      <input type="file" name="adminpost[voucherfile]" class="form-control" id="exampleInputPassword1" placeholder="Excel File" accept=".xlsx">
                       <!-- <input type="text" name="adminpost[purpose]" class="form-control" id="exampleInputPassword1" placeholder="Purpose"> -->
                       </div>
 
@@ -132,5 +137,4 @@
               </div><!-- /.box -->
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-            </div><!--/.col (right) -->
         </section><!-- /.content
