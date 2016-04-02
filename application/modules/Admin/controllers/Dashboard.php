@@ -339,6 +339,7 @@ class Dashboard extends CI_Controller {
 					// change the array key from column alphabet(A,B...) to database column names
 					// of each array from the excel file.
 					$newArray['vouchercode'] = $anArray['A'];
+					$newArray['serial'] = $anArray['B'];
 					$anArray = $newArray;
 					unset($newArray);
 					unset($anArray['A']);
