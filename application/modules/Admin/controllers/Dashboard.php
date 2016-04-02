@@ -106,6 +106,25 @@ class Dashboard extends CI_Controller {
 		}
 	}
 
+	public function deleteall()
+	{
+		$currentUser = $this->session->userdata('user_vars');
+		//$adminName = $this->allpost_header();
+		if ($currentUser){		
+			if($this->db->empty_table('posts')){
+				notify('success', 'All Posts Deleted sucessfully', 'Admin/Dashboard/allpost');
+			}else{
+				notify('danger', 'There was an error, please try again', 'Admin/Dashboard/allpost');
+			}
+			
+		}
+		else{
+			echo 'hey';
+			redirect('Admin/Login', 'refresh');
+		}
+		
+	}
+
 	public function editpost($postid)
 	{
 		if ($this->input->post('adminpost')) {

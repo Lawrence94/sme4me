@@ -26,6 +26,7 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">View All Posts</h3>
+                  <span><a href="<?php echo site_url('Admin/Dashboard/deleteall');?>"><button style="margin-left: 15px;" type="button" class="btn-primary">Delete All Posts</button></a></span>
                 </div><!-- /.box-header -->
                 <div class="tableui has-padding-bottom-x-small clearfix">
                     <div class="form__panel content-area-grey tableui__panel">
