@@ -100,10 +100,21 @@ div.ctools-ajaxing {
 .title {
 	display:table-cell;
 	vertical-align:middle;
+	text-align: center
 	/* width:240px; */
 	padding:0 55px 24px 55px;*
 	position:absolute;*
 	left:0;*
+	top:50%;*
+	width:100px;
+}
+.title1 {
+	display:table-cell;
+	text-align: center
+	/* width:240px; */
+	padding:0 55px 24px 55px;*
+	position:absolute;*
+	left:50;*
 	top:50%;*
 	width:100px;
 }
@@ -293,9 +304,28 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endCo
 .aggregator.people h2, .aggregator.people .cross, .aggregator.people .cross-active {
 	background-color: #EC9F5D;
 }
+.view-blonde-people {
+    text-align: center;
+}
+#map {
+        height: 178px;
+		border: 1px solid #e1e1e1;
+		width: 338px;
+		float: right;
+      }
+.profile-card {
+    width: 180px;
+    display: inline-block;
+    margin: 10px 28px;
+}
 .aggregator.careers h2, .aggregator.careers .cross, .aggregator.careers .cross-active {
 	background-color: #A3F1A4;
 }
+/* ------------------------ GMAPS3 ---------------------------- */
+.map .googleMap .googleMap-description .googleMap-triangle {
+    border-color: transparent #ce0000 transparent transparent;
+}
+
 .aggregator.blonde-title .inner {
 	margin:0;
 	background:#ffffff url(../css/images/aggregator_blonde_title.gif) center center no-repeat;
