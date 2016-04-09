@@ -93,6 +93,7 @@
                       <label>Category</label>
                       <select name="adminpost[catsingle]" class="form-control">
                         <option>Phd</option>
+                        <option>Mba</option>
                         <option>Master</option>
                         <option>Startup</option>
                         <option>Essay</option>
