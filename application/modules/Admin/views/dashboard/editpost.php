@@ -102,7 +102,7 @@
                         <option>Loan</option>
                         <option>Philantropy</option>
                         <option>Internship</option>
-                        <option>Fellowship</option>
+                        <option>Award</option>
                         <option>Postdoctorate</option>
                       </select>
                     </div>
