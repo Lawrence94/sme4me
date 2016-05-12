@@ -503,7 +503,7 @@ class Dashboard extends CI_Controller {
     		$username = $currentUser["username"];
     		$accessid = $currentUser['accesslevel'];
 			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
-			$posts = $this->db->get_where('posts', ['status' => '1'])->result();
+			$posts = $this->db->get('posts')->result();
 			// var_dump($posts);
 			// exit;
     		$role = $roleCheck->name;
@@ -588,6 +588,25 @@ class Dashboard extends CI_Controller {
     {
     	try{
     		$datadb = ['status' => 0];
+	    	$this->db->where('id', $postid);
+			$this->db->update('posts', $datadb); 
+	    	$result = ['result' => 'true'
+	    			  ];
+			echo json_encode($result);
+    	}
+    	catch(Exception $ex){
+    		$result[] = ['result' => 'false',
+    				     'baseUrl' => site_url(),
+	    			  	];
+		    echo json_encode($result);
+    	}
+    	
+    }
+
+    public function activate($postid)
+    {
+    	try{
+    		$datadb = ['status' => 1];
 	    	$this->db->where('id', $postid);
 			$this->db->update('posts', $datadb); 
 	    	$result = ['result' => 'true'

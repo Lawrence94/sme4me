@@ -53,7 +53,8 @@
                             <td    ><?= $post->category ?></td>
                             <td    ><a href="<?php echo site_url('Admin/Dashboard/editpost/'. $post->id);?>">Edit</a><br> 
                                     <div class="exp">
-                                      <a class="expire" data-id="<?php echo $post->id ?>" data-url="<?php echo site_url('Admin/Dashboard/expire/'. $post->id);?>" href="#" data-toggle="tab">Expire</a>
+                                      <a class="expire" data-id="<?php echo $post->id ?>" data-uri="<?php echo site_url('Admin/Dashboard/activate/'. $post->id);?>" data-url="<?php echo site_url('Admin/Dashboard/expire/'. $post->id);?>" href="#" data-toggle="tab">
+                                      <?php  echo $post->status == '1' ? "Expire" : "Activate" ?></a>
                                     </div>
                             </td>
                         </tr>
