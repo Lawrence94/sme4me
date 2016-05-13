@@ -92,6 +92,7 @@
                     <div class="form-group">
                       <label>Category</label>
                       <select name="adminpost[catsingle]" class="form-control">
+                      <option>Select One</option>
                         <option>Phd</option>
                         <option>Mba</option>
                         <option>Master</option>
