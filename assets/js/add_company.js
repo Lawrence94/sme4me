@@ -1,13 +1,13 @@
 $(document).ready(function(){	
   var jb_this;
-  $('.exp').hover(function() {
+  $('.expire').hover(function() {
         jb_this = $(this);
     });
   $('.expire').click(function() {
-    var expButton = $(this).html();
-    var theUrl = $(this).data('url');
-    var theSecondUrl = $(this).data('uri');
-    var id = $(this).data('id');
+    var expButton = $(jb_this).html();
+    var theUrl = $(jb_this).data('url');
+    var theSecondUrl = $(jb_this).data('uri');
+    var id = $(jb_this).data('id');
 
     if(expButton.indexOf("Expire") > -1){
       var async1 = $.ajax({
@@ -28,9 +28,9 @@ $(document).ready(function(){
       $.when(async1).done(function(result) {
             // ... do this when things are successful ...
                 if(JSON.stringify(result).indexOf('true') > -1){
-                        $('.expire').html('Activate');
+                        $(jb_this).html('Activate');
                     }else{
-                        $('.expire').html('Expire');
+                        $(jb_this).html('Expire');
                     }
       });
     }else{
@@ -52,9 +52,9 @@ $(document).ready(function(){
       $.when(async1).done(function(result) {
             // ... do this when things are successful ...
                 if(JSON.stringify(result).indexOf('true') > -1){
-                        $('.expire').html('Expire');
+                        $(jb_this).html('Expire');
                     }else{
-                        $('.expire').html('Activate');
+                        $(jb_this).html('Activate');
                     }
       });
     }
