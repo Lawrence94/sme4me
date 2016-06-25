@@ -44,7 +44,7 @@
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3><?= $activeUsers ?></h3>
+                  <h3><?= $activeusers ?></h3>
                   <p>Active Users</p>
                 </div>
                 <div class="icon">
