@@ -35,12 +35,6 @@
               </ul>
             </li>
             
-            <li>
-              <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Media</span> <small class="label pull-right bg-green">new</small>
-              </a>
-            </li>
-                     
             <li class="treeview active">
               <a href="#">
                 <i class="fa fa-edit"></i> <span>Post</span>
