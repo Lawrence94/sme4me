@@ -482,7 +482,7 @@ class Dashboard extends CI_Controller {
         	'totalVouchers' => count($totalVouchers),
         	'usedVouchers' => count($usedVouchers),
         	'unUsedVouchers' => $unUsedVouchers,
-        	'activeusers' => count($activeusers),
+        	'activeusers' => count($activeUsers),
         	'expiredUsers' => count($expiredUsers),
         	'active' => $cssClass,
         	'active2' => $cssClass1,
