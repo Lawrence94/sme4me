@@ -635,4 +635,44 @@ class Dashboard extends CI_Controller {
     	
     }
 
+    public function totalusers()
+    {
+    	$currentUser = $this->session->userdata('user_vars');
+		$adminName = ['result' => $this->db->get('userdetails')->result()];
+		if ($currentUser){		
+		
+			$dashView = $this->load->view('dashboard/analytics', $adminName, true);
+			buildPage($dashView, 'Dashboard');
+		}
+		else{
+			echo 'hey';
+			redirect('Admin/Login', 'refresh');
+		}
+    }
+
+    public function activeusers()
+    {
+    	# code...
+    }
+
+    public function expiredusers()
+    {
+    	# code...
+    }
+
+    public function totalvouchers()
+    {
+    	# code...
+    }
+
+    public function usedvouchers()
+    {
+    	# code...
+    }
+
+    public function unusedvouchers()
+    {
+    	# code...
+    }
+
 }
