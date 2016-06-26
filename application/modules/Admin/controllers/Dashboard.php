@@ -463,7 +463,7 @@ class Dashboard extends CI_Controller {
     		$username = $currentUser["username"];
     		$accessid = $currentUser['accesslevel'];
 			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
-			$totalUsers = $this->db->get('userdetails')->result();
+			$totalUsers = $this->db->get_where('userdetails', ['aid' => 5])->result();
 			$activeUsers = $this->db->get_where('userdetails', ['status' => 1])->result();
 			$expiredUsers = $this->db->get_where('userdetails', ['status' => 0])->result();
 			$totalVouchers = $this->db->get('vouchers')->result();
