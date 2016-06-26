@@ -47,7 +47,7 @@
                             <td    >bla</td>
                             <td    ><a href="<?php echo site_url('Admin/Dashboard/editpost/');?>">Edit</a><br> 
                                     <div class="exp">
-                                      <a class="expire" data-id="<?php echo $post->id ?>" data-uri="<?php echo site_url('Admin/Dashboard/activate/');?>" data-url="<?php echo site_url('Admin/Dashboard/expire/');?>" href="#" data-toggle="tab">
+                                      <a class="expire" data-id="<?php  ?>" data-uri="<?php echo site_url('Admin/Dashboard/activate/');?>" data-url="<?php echo site_url('Admin/Dashboard/expire/');?>" href="#" data-toggle="tab">
                                       "Activate"</a>
                                     </div>
                             </td>
