@@ -498,6 +498,59 @@ class Dashboard extends CI_Controller {
 		}
     }
 
+    public function analytics_header(){
+
+		//getting the currently logged in admin
+		$currentUser = $this->session->userdata('user_vars');;
+		$firstName = '';
+		$lastName = '';
+		$url = 'Admin/Dashboard';
+		$cssClass = 'active';
+		$cssClass1 = '""';
+		$cssClass2 = '""';
+		$cssClass3 = '""';
+		if ($currentUser) {
+    		// do stuff with the user
+    		$firstName = $currentUser['firstname'];
+    		$lastName = $currentUser["lastname"];
+    		$username = $currentUser["username"];
+    		$accessid = $currentUser['accesslevel'];
+			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
+			$totalUsers = $this->db->get('userdetails')->result();
+			$activeUsers = $this->db->get_where('userdetails', ['status' => 1])->result();
+			$expiredUsers = $this->db->get_where('userdetails', ['status' => 0])->result();
+			$totalVouchers = $this->db->get('vouchers')->result();
+			$this->db->select('voucherid');
+			$usedVouchers = $this->db->get('subusers')->result();
+			$unUsedVouchers = count($totalVouchers) - count($usedVouchers);
+    		$role = $roleCheck->name;
+
+    		return array(
+    		'displayData' => 'display:none',
+        	'firstName' => $firstName,
+        	'lastName' => $lastName,
+        	'redirect' => $url,
+        	'role' => $role,
+        	'totalUsers' => $totalUsers,
+        	'totalVouchers' => $totalVouchers,
+        	'usedVouchers' => $usedVouchers,
+        	'unUsedVouchers' => $unUsedVouchers,
+        	'activeusers' => $activeUsers,
+        	'expiredUsers' => $expiredUsers,
+        	'active' => $cssClass,
+        	'active2' => $cssClass1,
+        	'active1' => $cssClass2,
+        	'active4' => $cssClass1,
+        	'active3' => $cssClass3,
+        	'active5' => $cssClass1,
+        	);
+
+		} else {
+    		// show the signup or login page
+    		redirect('Admin/Login','refresh');
+		}
+    }
+
     public function allpost_header(){
 
 		//getting the currently logged in admin
@@ -638,14 +691,13 @@ class Dashboard extends CI_Controller {
     public function totalusers()
     {
     	$currentUser = $this->session->userdata('user_vars');
-		$adminName = ['result' => $this->db->get('userdetails')->result()];
+		$adminName = $this->analytics_header();
 		if ($currentUser){		
 		
 			$dashView = $this->load->view('dashboard/analytics', $adminName, true);
 			buildPage($dashView, 'Dashboard');
 		}
 		else{
-			echo 'hey';
 			redirect('Admin/Login', 'refresh');
 		}
     }
