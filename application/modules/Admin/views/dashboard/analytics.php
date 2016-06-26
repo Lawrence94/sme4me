@@ -40,7 +40,7 @@
                       </thead>
                       <tbody>
                       <?php
-                        $sn = 0;
+                        $sn = 1;
                         foreach ($totalUsers as $total) {
                       ?>     
                         <tr>
