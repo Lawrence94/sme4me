@@ -498,7 +498,7 @@ class Dashboard extends CI_Controller {
 		}
     }
 
-    public function analytics_header(){
+    public function analytics_header($state){
 
 		//getting the currently logged in admin
 		$currentUser = $this->session->userdata('user_vars');;
@@ -516,7 +516,7 @@ class Dashboard extends CI_Controller {
     		$username = $currentUser["username"];
     		$accessid = $currentUser['accesslevel'];
 			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
-			$totalUsers = $this->db->get('userdetails')->result();
+			$totalUsers = $this->db->get_where('userdetails', ['aid' => 5])->result();
 			$activeUsers = $this->db->get_where('userdetails', ['status' => 1])->result();
 			$expiredUsers = $this->db->get_where('userdetails', ['status' => 0])->result();
 			$totalVouchers = $this->db->get('vouchers')->result();
@@ -531,6 +531,7 @@ class Dashboard extends CI_Controller {
         	'lastName' => $lastName,
         	'redirect' => $url,
         	'role' => $role,
+        	'state' => $state,
         	'totalUsers' => $totalUsers,
         	'totalVouchers' => $totalVouchers,
         	'usedVouchers' => $usedVouchers,
@@ -691,7 +692,7 @@ class Dashboard extends CI_Controller {
     public function totalusers()
     {
     	$currentUser = $this->session->userdata('user_vars');
-		$adminName = $this->analytics_header();
+		$adminName = $this->analytics_header('totalusers');
 		if ($currentUser){		
 		
 			$dashView = $this->load->view('dashboard/analytics', $adminName, true);

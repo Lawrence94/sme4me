@@ -18,9 +18,12 @@
           <!-- Small boxes (Stat box) -->
           <div class="row">
             <div class="col-lg-12">
+            <?php if ($state == 'totalusers') {
+              # code...
+            ?>
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">View All Posts</h3>
+                  <h3 class="box-title">Total Users</h3>
                 </div><!-- /.box-header -->
                 <div class="tableui has-padding-bottom-x-small clearfix">
                     <div class="form__panel content-area-grey tableui__panel">
@@ -33,30 +36,25 @@
                 <form name="compareForm" method="post">
                   <table class="custom-table js-tablesorter searchable-table" cellspacing="0"  data-table-show-rows="" >
                       <thead>
-                          <tr><th  class="">Opportunity Title </th><th  class="">Purpose </th><th  class="">Eligibility </th><th  class="">Deadline </th><th  class="">Category </th> <th  class="">Action </th></tr>
+                          <tr><th  class="">S/N </th><th  class="">Name </th><th  class="">Email </th><th  class="">Status </th>
                       </thead>
                       <tbody>
                       <?php
-                        //foreach ($posts as $post) {
+                        $sn = 0;
+                        foreach ($totalUsers as $total) {
                       ?>     
-                        <tr  >
-                            <td    >bla</td>
-                            <td    >bla</td>
-                            <td    >bla</td>
-                            <td    >bla</td>
-                            <td    >bla</td>
-                            <td    ><a href="<?php echo site_url('Admin/Dashboard/editpost/');?>">Edit</a><br> 
-                                    <div class="exp">
-                                      <a class="expire" data-id="<?php  ?>" data-uri="<?php echo site_url('Admin/Dashboard/activate/');?>" data-url="<?php echo site_url('Admin/Dashboard/expire/');?>" href="#" data-toggle="tab">
-                                      "Activate"</a>
-                                    </div>
-                            </td>
+                        <tr>
+                            <td><?= $sn++ ?></td>
+                            <td><?= $total->fullname ?></td>
+                            <td><?= $total->email ?></td>
+                            <td><?= $total->status == '1' ? "Active" : "Expired" ?></td>
                         </tr>
-                      <?php //}  ?>
+                      <?php }  ?>
                       </tbody>
                   </table>
                 </form>
               </div>
+              <?php } ?>
             </div><!-- ./col -->
           </div><!-- /.row -->
 
