@@ -184,13 +184,11 @@
                       <?php
                         $sn = 1;
                         foreach ($usedVouchers as $total) {
-                          var_dump($total['id']);
-                          exit;
                       ?>     
                         <tr>
                             <td><?= $sn++ ?></td>
-                            <td><?= $total['vouchercode'] ?></td>
-                            <td><?= $total['serial'] ?></td>
+                            <td><?= $total[0]->vouchercode ?></td>
+                            <td><?= $total[0]->serial ?></td>
                         </tr>
                       <?php }  ?>
                       </tbody>
