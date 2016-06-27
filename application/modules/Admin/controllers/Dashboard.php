@@ -529,9 +529,6 @@ class Dashboard extends CI_Controller {
 			$unUsedVouchers = count($totalVouchers) - count($usedVouchers);
     		$role = $roleCheck->name;
 
-    		var_dump($usedVoucher);
-    		exit;
-
     		return array(
     		'displayData' => 'display:none',
         	'firstName' => $firstName,
