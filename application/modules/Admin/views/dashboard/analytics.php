@@ -187,8 +187,8 @@
                       ?>     
                         <tr>
                             <td><?= $sn++ ?></td>
-                            <td><?= $total->vouchercode ?></td>
-                            <td><?= $total->serial ?></td>
+                            <td><?= $total['vouchercode'] ?></td>
+                            <td><?= $total['serial'] ?></td>
                         </tr>
                       <?php }  ?>
                       </tbody>
