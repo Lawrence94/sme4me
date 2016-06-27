@@ -522,13 +522,14 @@ class Dashboard extends CI_Controller {
 			$totalVouchers = $this->db->get('vouchers')->result();
 			$this->db->select('voucherid');
 			$usedVouchers = $this->db->get('subusers')->result();
+			$usedVoucher = [];
 			foreach ($usedVouchers as $val) {
-				$usedVouchers = $this->db->get_where('vouchers', ['id' => $val->voucherid])->result();
+				$usedVoucher = $this->db->get_where('vouchers', ['id' => $val->voucherid])->result();
 			}
 			$unUsedVouchers = count($totalVouchers) - count($usedVouchers);
     		$role = $roleCheck->name;
 
-    		var_dump($usedVouchers);
+    		var_dump($usedVoucher);
     		exit;
 
     		return array(
