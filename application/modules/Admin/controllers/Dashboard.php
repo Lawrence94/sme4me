@@ -525,11 +525,12 @@ class Dashboard extends CI_Controller {
 			$usedVoucher = [];
 			foreach ($usedVouchers as $val) {
 				$usedVoucher = $this->db->get_where('vouchers', ['id' => $val->voucherid])->result();
+				var_dump($usedVoucher);
 			}
 			$unUsedVouchers = count($totalVouchers) - count($usedVouchers);
     		$role = $roleCheck->name;
 
-    		var_dump($usedVoucher);
+    		
     		exit;
 
     		return array(
