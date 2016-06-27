@@ -184,7 +184,7 @@
                       <?php
                         $sn = 1;
                         foreach ($usedVouchers as $total) {
-                          var_dump($total);
+                          var_dump($total['id']);
                           exit;
                       ?>     
                         <tr>
