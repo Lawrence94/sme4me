@@ -705,22 +705,58 @@ class Dashboard extends CI_Controller {
 
     public function activeusers()
     {
-    	# code...
+    	$currentUser = $this->session->userdata('user_vars');
+		$adminName = $this->analytics_header('activeusers');
+		if ($currentUser){		
+		
+			$dashView = $this->load->view('dashboard/analytics', $adminName, true);
+			buildPage($dashView, 'Dashboard');
+		}
+		else{
+			redirect('Admin/Login', 'refresh');
+		}
     }
 
     public function expiredusers()
     {
-    	# code...
+    	$currentUser = $this->session->userdata('user_vars');
+		$adminName = $this->analytics_header('expiredusers');
+		if ($currentUser){		
+		
+			$dashView = $this->load->view('dashboard/analytics', $adminName, true);
+			buildPage($dashView, 'Dashboard');
+		}
+		else{
+			redirect('Admin/Login', 'refresh');
+		}
     }
 
     public function totalvouchers()
     {
-    	# code...
+    	$currentUser = $this->session->userdata('user_vars');
+		$adminName = $this->analytics_header('totalvouchers');
+		if ($currentUser){		
+		
+			$dashView = $this->load->view('dashboard/analytics', $adminName, true);
+			buildPage($dashView, 'Dashboard');
+		}
+		else{
+			redirect('Admin/Login', 'refresh');
+		}
     }
 
     public function usedvouchers()
     {
-    	# code...
+    	$currentUser = $this->session->userdata('user_vars');
+		$adminName = $this->analytics_header('usedvouchers');
+		if ($currentUser){		
+		
+			$dashView = $this->load->view('dashboard/analytics', $adminName, true);
+			buildPage($dashView, 'Dashboard');
+		}
+		else{
+			redirect('Admin/Login', 'refresh');
+		}
     }
 
     public function unusedvouchers()
