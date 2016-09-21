@@ -271,7 +271,7 @@ class Dashboard extends CI_Controller {
     		$firstName = $currentUser['firstname'];
     		$lastName = $currentUser["lastname"];
     		$username = $currentUser["username"];
-    		// $accessid = $currentUser['accesslevel'];
+    		$accessid = $currentUser['accesslevel'];
 			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
 			// $totalUsers = $this->db->get_where('userdetails', ['aid' => 5])->result();
 			// $activeUsers = $this->db->get_where('userdetails', ['status' => 1])->result();
