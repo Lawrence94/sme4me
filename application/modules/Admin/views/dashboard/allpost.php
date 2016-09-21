@@ -39,24 +39,21 @@
                 <form name="compareForm" method="post">
                   <table class="custom-table js-tablesorter searchable-table" cellspacing="0"  data-table-show-rows="" >
                       <thead>
-                          <tr><th  class="">Opportunity Title </th><th  class="">Purpose </th><th  class="">Eligibility </th><th  class="">Deadline </th><th  class="">Category </th> <th  class="">Action </th></tr>
+                          <tr><th  class="">Full Name </th><th  class="">State </th><th  class="">Lga </th><th  class="">Country </th><th  class="">Primary Education </th> <th  class="">Secondary Education </th>
+                          <th  class="">University Deg. </th></tr>
                       </thead>
                       <tbody>
                       <?php
                         foreach ($posts as $post) {
                       ?>     
                         <tr  >
-                            <td    ><?= $post->title ?></td>
-                            <td    ><?= $post->purpose ?></td>
-                            <td    ><?= $post->eligibility ?></td>
-                            <td    ><?= $post->deadline ?></td>
-                            <td    ><?= $post->category ?></td>
-                            <td    ><a href="<?php echo site_url('Admin/Dashboard/editpost/'. $post->id);?>">Edit</a><br> 
-                                    <div class="exp">
-                                      <a class="expire" data-id="<?php echo $post->id ?>" data-uri="<?php echo site_url('Admin/Dashboard/activate/'. $post->id);?>" data-url="<?php echo site_url('Admin/Dashboard/expire/'. $post->id);?>" href="#" data-toggle="tab">
-                                      <?php  echo $post->status == '1' ? "Expire" : "Activate" ?></a>
-                                    </div>
-                            </td>
+                            <td    ><?= $post->fname ?></td>
+                            <td    ><?= $post->state ?></td>
+                            <td    ><?= $post->lga ?></td>
+                            <td    ><?= $post->country ?></td>
+                            <td    ><?= $post->pri_qual ?></td>
+                            <td    ><?= $post->sec_qual ?></td>
+                            <td    ><?= $post->uni_qual ?></td>
                         </tr>
                       <?php }  ?>
                       </tbody>

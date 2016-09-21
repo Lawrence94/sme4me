@@ -208,241 +208,51 @@ class Dashboard extends CI_Controller {
 
 	public function makepost()
 	{
-		if ($this->input->post('adminpost')) {
-			$post = $this->input->post('adminpost');
-			$status1 = true;
+		$postArray = ['email' => $_POST['email'],
+						'password1' => $_POST['password1'],
+						'fname' => $_POST['fname'],
+						'address' => $_POST['address'],
+						'mobile' => $_POST['mobile'],
+						'sex' => $_POST['sex'],
+						'dob' => $_POST['dob'],
+						'town' => $_POST['town'],
+						'country' => $_POST['country'],
+						'lga' => $_POST['lga'],
+						'key_skills' => $_POST['key_skills'],
+						'exp_year' => $_POST['exp_year'],
+						'func_area' => $_POST['func_area'],
+						'pri_name' => $_POST['pri_name'],
+						'pri_grad' => $_POST['pri_grad'],
+						'pri_qual' => $_POST['pri_qual'],
+						'sec_name' => $_POST['sec_name'],
+						'sec_grad' => $_POST['sec_grad'],
+						'sec_qual' => $_POST['sec_qual'],
+						'uni_name' => $_POST['uni_name'],
+						'uni_degree' => $_POST['uni_degree'],
+						'uni_grad' => $_POST['uni_grad'],
+						'uni_qual' => $_POST['uni_qual'],
+						'ms_univ' => $_POST['ms_univ'],
+						'ms_degree' => $_POST['ms_degree'],
+						'ms_completion' => $_POST['ms_completion'],
+						'pg_univ' => $_POST['pg_univ'],
+						'pg_degree' => $_POST['pg_degree'],
+						'pg_completion' => $_POST['pg_completion'],
+						'type' => $_POST['type'],
+					];
+			$postdb = $this->login->doPost($postArray);
 
-			$postPath1 = $_FILES['adminpost']['name']['voucherfile'];
+			if (!$postdb['status']){
+				$status1 = false;
+			}
 
-			$postPath = $_FILES['adminpost']['name']['file'];
-			$filePath = 'assets/uploads';
-
-			$finalPath = $filePath . '/'.$postPath;
-			$finalPath1 = $filePath . '/'.$postPath1;
-
-			if ($postPath !== '') {
-				// check if file exists
-				if(file_exists($finalPath)){
-					// if it exists, overwrite it!
-					unlink($finalPath);
-					move_uploaded_file($_FILES["adminpost"]["tmp_name"]['file'], $finalPath);
-				}else{
-					// else just move it to the appropriate folder for upload
-					move_uploaded_file($_FILES["adminpost"]["tmp_name"]['file'], $finalPath);
-				}
-				
-				// select an input fileType for the excel reader
-				$inputFileType = 'Excel2007';
-				// Create a new instance of the excel reader using the inputFileType
-				$objReader = PHPExcel_IOFactory::createReader($inputFileType);
-				$objReader->setReadDataOnly(true);
-				/**  Define how many rows we want to read for each "chunk"  **/ 
-				$chunkSize = 2048; 
-				/**  Create a new Instance of our Read Filter  **/ 
-				$chunkFilter = $this->excelreader; 
-				/**  Tell the Reader that we want to use the Read Filter  **/ 
-				$objReader->setReadFilter($chunkFilter);
-
-				$someArray = [];
-				$anArray = [];
-				$finalArray = [];
-
-				$operations = 0;
-
-				$datecreated = date('Y-m-d h:i:s');
-
-				/**  Loop to read our worksheet in "chunk size" blocks  **/ 
-				for ($startRow = 2; $startRow <= 65536; $startRow += $chunkSize) { 
-					set_time_limit(0);
-				    /**  Tell the Read Filter which rows we want this iteration  **/ 
-				    $chunkFilter->setRows($startRow, $chunkSize); 
-				    /**  Load only the rows that match our filter  **/ 
-				    $objPHPExcel = $objReader->load($finalPath); 
-				    //    Do some processing here 
-				    $someArray = $objPHPExcel->getActiveSheet()->toArray(null, true,true,true);
-				    unset($someArray[1]);
-				} 
-				foreach ($someArray as $key => $value) {
-
-					set_time_limit(0);
-
-					$operations++;
-					$anArray = $value;
-					$newArray = $value;
-					// change the array key from column alphabet(A,B...) to database column names
-					// of each array from the excel file.
-					$newArray['title'] = $anArray['A'];
-					$newArray['purpose'] = $anArray['B'];
-					$newArray['eligibility'] = $anArray['C'];
-					$newArray['level'] = $anArray['D'];
-					$newArray['value'] = $anArray['E'];
-					$newArray['valuedoll'] = $anArray['F'];
-					$newArray['frequency'] = $anArray['G']; //Frequency on database is actually Course on sme4me
-					$newArray['country'] = $anArray['H'];
-					$newArray['deadline'] = $anArray['I'];
-					$newArray['weblink'] = $anArray['J'];
-					$newArray['category'] = $anArray['K'];
-					$newArray['datecreated'] = $datecreated;
-					$anArray = $newArray;
-					unset($newArray);
-					unset($anArray['A']);
-					unset($anArray['B']);
-					unset($anArray['C']);
-					unset($anArray['D']);
-					unset($anArray['E']);
-					unset($anArray['F']);
-					unset($anArray['G']);
-					unset($anArray['H']);
-					unset($anArray['I']);
-					unset($anArray['J']);
-					unset($anArray['K']);
-					unset($anArray['L']);
-					//var_dump($anArray);
-					$this->doIteratedUpload($anArray);
-				}			
+			if (!$status1){
+				//echo "fuck";
+				notify('danger', $loginParse['parseMsg'], 'Admin/Dashboard/newpost');
+			}else{
 				echo "Please wait, we'll take you back to the dashboard right away...";
-				notify('success', 'Post added sucessfully', 'Admin/Dashboard/newpost');	
-				//exit;
-
+				notify('success', 'Post added sucessfully', 'Admin/Dashboard/newpost');
 			}
-			elseif ($postPath1 !== '') {
-				// check if file exists
-				if(file_exists($finalPath1)){
-					// if it exists, overwrite it!
-					unlink($finalPath1);
-					move_uploaded_file($_FILES["adminpost"]["tmp_name"]['voucherfile'], $finalPath1);
-				}else{
-					// else just move it to the appropriate folder for upload
-					move_uploaded_file($_FILES["adminpost"]["tmp_name"]['voucherfile'], $finalPath1);
-				}
-				
-				// select an input fileType for the excel reader
-				$inputFileType = 'Excel2007';
-				// Create a new instance of the excel reader using the inputFileType
-				$objReader = PHPExcel_IOFactory::createReader($inputFileType);
-				$objReader->setReadDataOnly(true);
-				/**  Define how many rows we want to read for each "chunk"  **/ 
-				$chunkSize = 2048; 
-				/**  Create a new Instance of our Read Filter  **/ 
-				$chunkFilter = $this->excelreader; 
-				/**  Tell the Reader that we want to use the Read Filter  **/ 
-				$objReader->setReadFilter($chunkFilter);
-
-				$someArray = [];
-				$anArray = [];
-				$finalArray = [];
-
-				$operations = 0;
-
-				$datecreated = date('Y-m-d h:i:s');
-
-				/**  Loop to read our worksheet in "chunk size" blocks  **/ 
-				for ($startRow = 2; $startRow <= 65536; $startRow += $chunkSize) { 
-					set_time_limit(0);
-				    /**  Tell the Read Filter which rows we want this iteration  **/ 
-				    $chunkFilter->setRows($startRow, $chunkSize); 
-				    /**  Load only the rows that match our filter  **/ 
-				    $objPHPExcel = $objReader->load($finalPath1); 
-				    //    Do some processing here 
-				    $someArray = $objPHPExcel->getActiveSheet()->toArray(null, true,true,true);
-				    unset($someArray[1]);
-				} 
-				
-				foreach ($someArray as $key => $value) {
-
-					set_time_limit(0);
-
-					$operations++;
-					$anArray = $value;
-					$newArray = $value;
-					// change the array key from column alphabet(A,B...) to database column names
-					// of each array from the excel file.
-					$newArray['vouchercode'] = $anArray['A'];
-					$newArray['serial'] = $anArray['B'];
-					$anArray = $newArray;
-					unset($newArray);
-					unset($anArray['A']);
-					unset($anArray['B']);
-					unset($anArray['C']);
-					unset($anArray['D']);
-					unset($anArray['E']);
-					unset($anArray['F']);
-					unset($anArray['G']);
-					unset($anArray['H']);
-					unset($anArray['I']);
-					unset($anArray['J']);
-										
-					$this->doVoucherUpload($anArray);
-				}	
-				//exit;		
-				echo "Please wait, we'll take you back to the dashboard right away...";
-				notify('success', 'Post added sucessfully', 'Admin/Dashboard/newpost');	
-				//exit;
-
-			}
-			else{
-
-				$posttitle = $post['title'];
-				$purpose = $post['purpose'];
-				$eligibility = $post['eligibility'];
-				$level = $post['level'];
-				$value = $post['value'];
-				$valuedoll = $post['valuedoll'];
-				$frequency = $post['freq'];
-				//$est = $post['est'];
-				$country = $post['country'];
-				//$awards = $post['awards'];
-				$deadline = $post['deadline'];
-				$weblink = $post['weblink'];
-				$singlecat = $post['catsingle'];
-				//$multicat = $post['catmulti'];
-				//$datecreated = date('Y-m-d h:i:s');
-
-				// var_dump($multicat);
-				// exit;
-
-				//$multijson = json_encode($multicat);
-
-				if ($posttitle == '' && $purpose == '' && $eligibility == '' && $level == '' && $valuedoll == '' && $frequency == '' && $country == ''
-					&& $deadline == '' && $weblink == '') {
-					notify('danger', 'Fields cannot be empty', 'Admin/Dashboard/newpost');
-				}else{
-					$postArray = ['title' => $posttitle,
-							  'purpose' => $purpose,
-							  'eligibility' => $eligibility,
-							  'level' => $level,
-							  'value' => $value,
-							  'valuedoll' => $valuedoll,
-							  'frequency' => $frequency,
-							  //'establishment' => $est,
-							  'country' => $country,
-							  //'awards' => $awards,
-							  'deadline' => $deadline,
-							  'weblink' => $weblink,
-							  'category' => $singlecat,
-							  //'categories' => '',
-							  'datecreated' => $datecreated,
-							 ];
-
-					 // var_dump($postArray);
-					 // exit;
-
-					$postdb = $this->login->doPost($postArray);
-
-					if (!$postdb['status']){
-						$status1 = false;
-					}
-
-					if (!$status1){
-						//echo "fuck";
-						notify('danger', $loginParse['parseMsg'], 'Admin/Dashboard/newpost');
-					}else{
-						echo "Please wait, we'll take you back to the dashboard right away...";
-						notify('success', 'Post added sucessfully', 'Admin/Dashboard/newpost');
-					}
-				}	
-			}
-		}
+	
 	}
 
 	public function menu_header(){
@@ -575,7 +385,7 @@ class Dashboard extends CI_Controller {
     		$username = $currentUser["username"];
     		$accessid = $currentUser['accesslevel'];
 			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
-			$posts = $this->db->get('posts')->result();
+			$posts = $this->db->get('worker_details')->result();
 			// var_dump($posts);
 			// exit;
     		$role = $roleCheck->name;

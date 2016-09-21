@@ -2,9 +2,9 @@
         <!-- Logo -->
         <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>SME4</b>ME</span>
+          <span class="logo-mini"><b>Solomon</b> Max</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Smart Money </b>Encyclopaedia</span>
+          <span class="logo-lg"><b>Solomon </b>Max</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -27,7 +27,7 @@
                   <li class="user-header">
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
-                      Joshua Lawrence - Web Developer
+                      Faith Dike - Web Developer
                       <small>Member since Nov. 2012</small>
                     </p>
                   </li>
