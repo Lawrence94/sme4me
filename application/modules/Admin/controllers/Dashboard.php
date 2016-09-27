@@ -125,7 +125,7 @@ class Dashboard extends CI_Controller {
 		
 	}
 
-	public function editpost($postid)
+	public function adduser()
 	{
 		if ($this->input->post('adminpost')) {
 			$post = $this->input->post('adminpost');
@@ -193,11 +193,11 @@ class Dashboard extends CI_Controller {
 
 		}else{
 			$currentUser = $this->session->userdata('user_vars');
-			$adminName = $this->editpost_header($postid);
+			$adminName = $this->editpost_header();
 			if ($currentUser){		
 			
 				$dashView = $this->load->view('dashboard/editpost', $adminName, true);
-				buildPage($dashView, 'Dashboard - Edit Post');
+				buildPage($dashView, 'Dashboard - Add User');
 			}
 			else{
 				echo 'hey';
@@ -278,7 +278,7 @@ class Dashboard extends CI_Controller {
 			// $expiredUsers = $this->db->get_where('userdetails', ['status' => 0])->result();
 			// $totalVouchers = $this->db->get('vouchers')->result();
 			// $this->db->select('voucherid');
-			// $usedVouchers = $this->db->get('subusers')->result();
+			$data = $this->db->get('worker_details')->result();
 			// $unUsedVouchers = count($totalVouchers) - count($usedVouchers);
     		$role = $roleCheck->name;
 
@@ -288,7 +288,7 @@ class Dashboard extends CI_Controller {
         	'lastName' => $lastName,
         	'redirect' => $url,
         	'role' => $role,
-        	// 'totalUsers' => count($totalUsers),
+        	'totalData' => count($data),
         	// 'totalVouchers' => count($totalVouchers),
         	// 'usedVouchers' => count($usedVouchers),
         	// 'unUsedVouchers' => $unUsedVouchers,
@@ -411,7 +411,7 @@ class Dashboard extends CI_Controller {
 		}
     }
 
-    public function editpost_header($postid){
+    public function editpost_header(){
 
 		//getting the currently logged in admin
 		$currentUser = $this->session->userdata('user_vars');;
@@ -429,8 +429,8 @@ class Dashboard extends CI_Controller {
     		$username = $currentUser["username"];
     		$accessid = $currentUser['accesslevel'];
 			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
-			$post = $this->db->get_where('posts', ['id' => $postid])->row();
-			// var_dump($post);
+			$aid = $this->db->get('accesslevel')->result();
+			// var_dump($aid);
 			// exit;
     		$role = $roleCheck->name;
 
@@ -440,7 +440,7 @@ class Dashboard extends CI_Controller {
         	'lastName' => $lastName,
         	'redirect' => $url,
         	'role' => $role,
-        	'post' => $post,
+        	'aids' => $aid,
         	'active' => $cssClass,
         	'active2' => $cssClass1,
         	'active1' => $cssClass2,

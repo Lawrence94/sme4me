@@ -43,6 +43,9 @@
               <ul class="treeview-menu">
                 <li><a href="<?php echo site_url('Admin/Dashboard/newpost');?>"><i class="fa fa-circle-o"></i> New Post</a></li>
                 <li><a href="<?php echo site_url('Admin/Dashboard/allpost');?>"><i class="fa fa-circle-o"></i> All Posts</a></li>
+                <?php if ($role ==  SUPER_ADMINISTRATOR) {
+                ?><li><a href="<?php echo site_url('Admin/Dashboard/adduser');?>"><i class="fa fa-circle-o"></i> User Management</a></li>
+                <?php } ?>
               </ul>
             </li>
       

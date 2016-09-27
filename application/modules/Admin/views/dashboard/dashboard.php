@@ -15,7 +15,20 @@
           <!-- Small boxes (Stat box) -->
           <div class="row">
             
-
+            <div class="col-lg-12 col-xs-12">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3><?= $totalData ?></h3>
+                  <p>Total Data in database</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+              </div>
+            </div><!-- ./col -->
+          
+          </div>
           <!-- Main row -->
           <div class="row">
             <!-- Left col -->
