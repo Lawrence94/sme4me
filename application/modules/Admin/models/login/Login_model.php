@@ -59,13 +59,17 @@ class Login_model extends CI_Model {
       }
     }
 
-    public function editPost($postArray, $postid)
+    public function adduser($postArray)
     {
       # code...
       try {
-        $this->db->where('id', $postid);
-        $this->db->update('posts', $postArray);
-        return ['status' => true,];
+        $result = $this->db->get_where('userdetails', ['username' => $postArray['email']])->row();
+        if(empty($result)){
+          $this->db->insert('userdetails', $postArray);
+          return ['status' => true,];
+        }else{
+          return ['status' => false, 'parseMsg' => 'A User with that email already exists'];
+        }
       } catch (Exception $ex) {
         return ['status' => false, 'parseMsg' => 'There was an error, please try again'];
       }

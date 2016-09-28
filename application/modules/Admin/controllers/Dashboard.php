@@ -127,69 +127,42 @@ class Dashboard extends CI_Controller {
 
 	public function adduser()
 	{
-		if ($this->input->post('adminpost')) {
-			$post = $this->input->post('adminpost');
+		if ($this->input->post()) {
+			$post = $this->input->post();
+		
 			$status1 = true;
 
-			$posttitle = $post['title'];
-				$purpose = $post['purpose'];
-				$eligibility = $post['eligibility'];
-				$level = $post['level'];
-				$value = $post['value'];
-				$valuedoll = $post['valuedoll'];
-				$frequency = $post['freq'];
-				//$est = $post['est'];
-				$country = $post['country'];
-				//$awards = $post['awards'];
-				$deadline = $post['deadline'];
-				$weblink = $post['weblink'];
-				$singlecat = $post['catsingle'];
-				//$multicat = $post['catmulti'];
-				//$datecreated = date('Y-m-d h:i:s');
+			$firstName = $post['fname'];
+			$lastName = $post['lname'];
+			$email = $post['email'];
+			$password = $post['password'];
+			$aid = $post['aid'];
 
-				// var_dump($multicat);
-				// exit;
+			if ($firstName == '' || $lastName == '' || $email == '' || $password == '') {
+				notify('danger', 'Fields cannot be empty', 'Admin/Dashboard/adduser');
+			}else{
+				  $postArray = ['username' => $email,
+								'firstname' => $firstName,
+								'lastname' => $lastName,
+								'password' => $password,
+								'aid' => $aid,
+								'email' => $email,
+								'status' => 1,
+								];
 
-				//$multijson = json_encode($multicat);
+				$postdb = $this->login->adduser($postArray);
 
-				if ($posttitle == '' && $purpose == '' && $eligibility == '' && $level == '' && $valuedoll == '' && $frequency == '' && $country == ''
-					&& $deadline == '' && $weblink == '') {
-					notify('danger', 'Fields cannot be empty', 'Admin/Dashboard/editpost/'. $postid);
+				if (!$postdb['status']){
+					$status1 = false;
+				}
+
+				if (!$status1){
+					notify('danger', $postdb['parseMsg'], 'Admin/Dashboard/adduser');
 				}else{
-					$postArray = ['title' => $posttitle,
-								  'purpose' => $purpose,
-								  'eligibility' => $eligibility,
-								  'level' => $level,
-								  'value' => $value,
-								  'valuedoll' => $valuedoll,
-								  'frequency' => $frequency,
-								  //'establishment' => $est,
-								  'country' => $country,
-								  //'awards' => $awards,
-								  'deadline' => $deadline,
-								  'weblink' => $weblink,
-								  'category' => $singlecat,
-								  //'categories' => '',
-								  //'datecreated' => $datecreated,
-								 ];
-
-					 // var_dump($postArray);
-					 // exit;
-
-					$postdb = $this->login->editPost($postArray, $postid);
-
-					if (!$postdb['status']){
-						$status1 = false;
-					}
-
-					if (!$status1){
-						//echo "fuck";
-						notify('danger', 'There was an unkown error, please try again', 'Admin/Dashboard/editpost/'. $postid);
-					}else{
-						echo "Please wait, we'll take you back to the dashboard right away...";
-						notify('success', 'Post added sucessfully', 'Admin/Dashboard/editpost/'. $postid);
-					}
-				}	
+					echo "Please wait, we'll take you back to the dashboard right away...";
+					notify('success', 'Post added sucessfully', 'Admin/Dashboard/adduser');
+				}
+			}	
 
 		}else{
 			$currentUser = $this->session->userdata('user_vars');

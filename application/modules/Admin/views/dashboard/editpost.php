@@ -1,13 +1,13 @@
 
 <section class="content-header">
           <h1>
-            New Post
+            New User
             <small>new</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Page</a></li>
-            <li class="active">Add a New Post</li>
+            <li class="active">Add a New User</li>
           </ol>
         </section>
 
@@ -22,7 +22,7 @@
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                <h3 class="box-title">Add a New Post</h3>
+                <h3 class="box-title">Add a New User</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" action="<?= site_url('Admin/Dashboard/adduser'); ?>" method="post" enctype="multipart/form-data">
@@ -33,13 +33,23 @@
                     </div>
                     
                     <div class="form-group">
+                      <label for="exampleInputPassword1">First Name </label>
+                      <input type="text" required name="fname" class="form-control" id="exampleInputPassword1" placeholder="First Name">
+                      </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputPassword1">Last Name </label>
+                      <input type="text" required name="lname" class="form-control" id="exampleInputPassword1" placeholder="Last Name">
+                      </div>
+
+                    <div class="form-group">
                       <label for="exampleInputPassword1">Email </label>
-                      <input type="text" name="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                      <input type="text" required name="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
                       </div>
 					
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password </label>
-                      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="password">
+                      <input type="password" required name="password" class="form-control" id="exampleInputPassword1" placeholder="password">
                     </div>
 				
                      <!-- select -->
