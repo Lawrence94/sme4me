@@ -25,10 +25,9 @@
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="<?php echo site_url();?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
-                      Faith Dike - Web Developer
-                      <small>Member since Nov. 2012</small>
+                      <?php echo $firstName . ' ' . $lastName;?>
                     </p>
                   </li>
                   <!-- Menu Body -->

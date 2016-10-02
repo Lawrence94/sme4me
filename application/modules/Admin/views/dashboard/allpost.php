@@ -2,6 +2,13 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="<?php echo site_url();?>assets/js/add_company.js"></script>
 
+<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css"></link>
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.delay.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/javascript.js"></script>
+
 <!-- <link rel="stylesheet" href="<?php echo site_url();?>assets/postedittable/css/style.css"> -->
 
 
@@ -27,8 +34,24 @@
                 <div class="box-header with-border">
                   <h3 class="box-title">View All Posts</h3>
                   <span><a href="<?php echo site_url('Admin/Dashboard/deleteall');?>"><button style="margin-left: 15px;" type="button" class="btn-primary">Delete All Posts</button></a></span>
-                </div><!-- /.box-header -->
-                <div class="tableui has-padding-bottom-x-small clearfix">
+                </div>
+                <table cellpadding="0" cellspacing="0" border="0" id="data" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Sex</th>
+                            <th>Degree</th>
+                            <th>Town</th>
+                            <th>Country</th>
+                            <th>Lga</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table><!-- /.box-header -->
+                <!-- <div class="tableui has-padding-bottom-x-small clearfix">
                     <div class="form__panel content-area-grey tableui__panel">
                         <div class="form__group-inline clearfix">
                             <label for="search" class="fin-text-blue form__label-inline">Search</label>
@@ -58,7 +81,7 @@
                       <?php }  ?>
                       </tbody>
                   </table>
-                </form>
+                </form> -->
               </div>
             </div>
           </div>
