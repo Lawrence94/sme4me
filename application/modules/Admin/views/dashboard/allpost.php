@@ -33,7 +33,7 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">View All Posts</h3>
-                  <span><a href="<?php echo site_url('Admin/Dashboard/deleteall');?>"><button style="margin-left: 15px;" type="button" class="btn-primary">Delete All Posts</button></a></span>
+                  <span><a href="#"><button style="margin-left: 15px;" type="button" class="btn-primary">Delete All Posts</button></a></span>
                 </div>
                 <table cellpadding="0" cellspacing="0" border="0" id="data" width="100%">
                     <thead>
