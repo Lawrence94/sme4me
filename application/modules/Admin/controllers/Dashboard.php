@@ -179,6 +179,55 @@ class Dashboard extends CI_Controller {
 		}
 	}
 
+	public function edituser($id)
+	{
+		if ($this->input->post()) {
+			$post = $this->input->post();
+		
+			$status1 = true;
+
+			$firstName = $post['fname'];
+			$lastName = $post['lname'];
+			$password = $post['password'];
+
+			if ($firstName == '' || $lastName == '' || $password == '') {
+				notify('danger', 'Fields cannot be empty', 'Admin/Dashboard/edituser/' . $id);
+			}else{				
+				  $postArray = [
+								'firstname' => $firstName,
+								'lastname' => $lastName,
+								'password' => $password
+								];
+
+				$postdb = $this->login->edituser($id, $postArray);
+
+				if (!$postdb['status']){
+					$status1 = false;
+				}
+				$currentUser = $this->session->userdata('user_vars');
+				if (!$status1){
+					notify('danger', $postdb['parseMsg'], 'Admin/Dashboard/edituser/' . $currentUser['userid']);
+				}else{
+					echo "Please wait, we'll take you back to the dashboard right away...";
+					notify('success', 'Edited sucessfully', 'Admin/Dashboard/edituser/' . $currentUser['userid']);
+				}
+			}	
+
+		}else{
+			$currentUser = $this->session->userdata('user_vars');
+			$adminName = $this->edituser_header();
+			if ($currentUser){		
+			
+				$dashView = $this->load->view('dashboard/profileedit', $adminName, true);
+				buildPage($dashView, 'Dashboard - Edit User');
+			}
+			else{
+				echo 'hey';
+				redirect('Admin/Login', 'refresh');
+			}
+		}
+	}
+
 	public function makepost()
 	{
 		$postArray = ['email' => $_POST['email'],
@@ -245,6 +294,7 @@ class Dashboard extends CI_Controller {
     		$lastName = $currentUser["lastname"];
     		$username = $currentUser["username"];
     		$accessid = $currentUser['accesslevel'];
+    		$userid = $currentUser['userid'];
 			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
 			// $totalUsers = $this->db->get_where('userdetails', ['aid' => 5])->result();
 			// $activeUsers = $this->db->get_where('userdetails', ['status' => 1])->result();
@@ -261,6 +311,7 @@ class Dashboard extends CI_Controller {
         	'lastName' => $lastName,
         	'redirect' => $url,
         	'role' => $role,
+        	'id' => $userid,
         	'totalData' => count($data),
         	// 'totalVouchers' => count($totalVouchers),
         	// 'usedVouchers' => count($usedVouchers),
@@ -356,6 +407,7 @@ class Dashboard extends CI_Controller {
     		$firstName = $currentUser['firstname'];
     		$lastName = $currentUser["lastname"];
     		$username = $currentUser["username"];
+    		$userid = $currentUser['userid'];
     		$accessid = $currentUser['accesslevel'];
 			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
 			$posts = $this->db->get('worker_details')->result();
@@ -369,6 +421,7 @@ class Dashboard extends CI_Controller {
         	'lastName' => $lastName,
         	'redirect' => $url,
         	'role' => $role,
+        	'id' => $userid,
         	'posts' => $posts,
         	'active' => $cssClass,
         	'active2' => $cssClass1,
@@ -401,6 +454,7 @@ class Dashboard extends CI_Controller {
     		$lastName = $currentUser["lastname"];
     		$username = $currentUser["username"];
     		$accessid = $currentUser['accesslevel'];
+    		$userid = $currentUser['userid'];
 			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
 			$aid = $this->db->get('accesslevel')->result();
 			// var_dump($aid);
@@ -414,6 +468,55 @@ class Dashboard extends CI_Controller {
         	'redirect' => $url,
         	'role' => $role,
         	'aids' => $aid,
+        	'id' => $userid,
+        	'active' => $cssClass,
+        	'active2' => $cssClass1,
+        	'active1' => $cssClass2,
+        	'active4' => $cssClass1,
+        	'active3' => $cssClass3,
+        	'active5' => $cssClass1,
+        	);
+
+		} else {
+    		// show the signup or login page
+    		redirect('Admin/Login','refresh');
+		}
+    }
+
+    public function edituser_header(){
+
+		//getting the currently logged in admin
+		$currentUser = $this->session->userdata('user_vars');;
+		$firstName = '';
+		$lastName = '';
+		$url = 'Admin/Dashboard';
+		$cssClass = 'active';
+		$cssClass1 = '""';
+		$cssClass2 = '""';
+		$cssClass3 = '""';
+		if ($currentUser) {
+    		// do stuff with the user
+    		$firstName = $currentUser['firstname'];
+    		$lastName = $currentUser["lastname"];
+    		$username = $currentUser["username"];
+    		$userid = $currentUser['userid'];
+    		$accessid = $currentUser['accesslevel'];
+    		$userid = $currentUser['userid'];
+			$roleCheck = $this->db->get_where('accesslevel', ['id' => $accessid])->row();
+			$details = $this->db->get_where('userdetails', ['id' => $userid])->row();
+			$aid = $this->db->get('accesslevel')->result();
+			// var_dump($details);
+			// exit;
+    		$role = $roleCheck->name;
+
+    		return array(
+    		'displayData' => 'display:none',
+        	'firstName' => $firstName,
+        	'lastName' => $lastName,
+        	'redirect' => $url,
+        	'role' => $role,
+        	'id' => $userid,
+        	'details' => $details,
         	'active' => $cssClass,
         	'active2' => $cssClass1,
         	'active1' => $cssClass2,
