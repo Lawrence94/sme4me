@@ -66,7 +66,7 @@
                       </div>
 
                       <div class="form-group">
-                        <label for="exampleInputPassword1">Message to all email addressees </label>
+                        <label for="exampleInputPassword1">Message to all email addresses </label>
                         <textarea name="message" class="form-control" id="exampleInputPassword1"></textarea>
                       </div>
                       
