@@ -46,6 +46,9 @@
                 <?php if ($role ==  SUPER_ADMINISTRATOR) {
                 ?><li><a href="<?php echo site_url('Admin/Dashboard/adduser');?>"><i class="fa fa-circle-o"></i> User Management</a></li>
                 <?php } ?>
+                <?php if ($role ==  SUPER_ADMINISTRATOR) {
+                ?><li><a href="<?php echo site_url('Admin/Dashboard/email');?>"><i class="fa fa-circle-o"></i> Send Email</a></li>
+                <?php } ?>
               </ul>
             </li>
       

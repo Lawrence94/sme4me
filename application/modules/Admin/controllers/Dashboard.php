@@ -749,4 +749,64 @@ class Dashboard extends CI_Controller {
         echo json_encode($output);
     }
 
+    public function mailout($message, $subject, $email)
+    {
+    	$to      = $email;
+		//$message = '';
+    	// To send HTML mail, the Content-type header must be set
+    	$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+		// Additional headers
+		//$headers .= 'To: Lawrence <l.agbani@hotmail.co.uk>' . "\r\n";
+		$headers .= 'From: SolomonMax <lawrence@lawrencetalks.com>' . "\r\n";
+		//$headers .= 'Cc: agbani92@gmail.com' . "\r\n";
+		$headers .= 'Bcc: agbani92@gmail.com' . "\r\n";
+	    $headers .= 'Reply-To: info@solomonmax.com' . "\r\n";
+	    $headers .= 'X-Mailer: PHP/' . phpversion();
+	   try {
+	   	mail($to, $subject, $message, $headers, '-flawrence@lawrencetalks.com -rlawrence@lawrencetalks.com');
+	   	notify('info', "Your Mail has been sent successfully", site_url('Admin/Dashboard/email'));
+	   } catch (Exception $e) {
+	   	notify('info', "There was an error " . $e->getMessage(), site_url('Admin/Dashboard/email'));
+	   }
+	   
+    }
+
+    public function email()
+    {
+    	if ($this->input->post()) {
+			$post = $this->input->post();
+
+			if ($post['testmail']) {
+
+				$message = $post['testmessage'];
+				$subject = $post['subject'];
+				$to = $post['testmail'];
+
+				$this->mailout($message, $subject, $to);
+
+			} else {
+				
+				$message = $post['message'];
+				$subject = $post['subject'];
+
+				$this->mailout($message, $subject, $to);
+			}
+			
+		}else{
+			$currentUser = $this->session->userdata('user_vars');
+			$adminName = $this->menu_header();
+			if ($currentUser){		
+			
+				$dashView = $this->load->view('dashboard/email', $adminName, true);
+				buildPage($dashView, 'Dashboard - Send Email');
+			}
+			else{
+				echo 'hey';
+				redirect('Admin/Login', 'refresh');
+			}
+		}
+    }
+
 }
