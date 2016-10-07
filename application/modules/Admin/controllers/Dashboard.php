@@ -761,7 +761,7 @@ class Dashboard extends CI_Controller {
 		//$headers .= 'To: Lawrence <l.agbani@hotmail.co.uk>' . "\r\n";
 		$headers .= 'From: SolomonMax <lawrence@lawrencetalks.com>' . "\r\n";
 		//$headers .= 'Cc: agbani92@gmail.com' . "\r\n";
-		$headers .= 'Bcc: agbani92@gmail.com' . "\r\n";
+		//$headers .= 'Bcc: agbani92@gmail.com' . "\r\n";
 	    $headers .= 'Reply-To: info@solomonmax.com' . "\r\n";
 	    $headers .= 'X-Mailer: PHP/' . phpversion();
 	   try {
