@@ -32,7 +32,7 @@
 
                     <div class="form-group">
                       <label for="exampleInputPassword1">Test Receipient </label>
-                      <input type="text" name="testemail" class="form-control" id="exampleInputPassword1" placeholder="email address">
+                      <input type="email" name="testemail" class="form-control" id="exampleInputPassword1" placeholder="email address">
                     </div>
 
                     <div class="form-group">
