@@ -57,7 +57,7 @@
                   <div class="box-header with-border">
                     <h3 class="box-title">Send Full Mail</h3>
                   </div><!-- /.box-header -->
-  				        <form role="form" action="<?= site_url('Admin/Dashboard/email'); ?>" method="post" enctype="multipart/form-data">
+  				        <form role="form" action="#" method="post" enctype="multipart/form-data">
                     <div class="box-body">
 
                       <div class="form-group">

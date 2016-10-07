@@ -782,7 +782,7 @@ class Dashboard extends CI_Controller {
 
 				$message = $post['testmessage'];
 				$subject = $post['subject'];
-				$to = $post['testmail'];
+				$to = $post['testemail'];
 
 				$this->mailout($message, $subject, $to);
 
