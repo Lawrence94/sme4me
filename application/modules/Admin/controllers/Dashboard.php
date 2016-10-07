@@ -778,7 +778,7 @@ class Dashboard extends CI_Controller {
     	if ($this->input->post()) {
 			$post = $this->input->post();
 
-			if ($post['testmail']) {
+			if ($post['testemail']) {
 
 				$message = $post['testmessage'];
 				$subject = $post['subject'];
