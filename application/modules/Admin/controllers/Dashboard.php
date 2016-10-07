@@ -773,27 +773,52 @@ class Dashboard extends CI_Controller {
 	   
     }
 
+    public function mailoutmulti($message, $subject, $email)
+    {
+    	$to      = $email;
+		//$message = '';
+    	// To send HTML mail, the Content-type header must be set
+    	$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+		// Additional headers
+		//$headers .= 'To: Lawrence <l.agbani@hotmail.co.uk>' . "\r\n";
+		$headers .= 'From: SolomonMax <lawrence@lawrencetalks.com>' . "\r\n";
+		//$headers .= 'Cc: agbani92@gmail.com' . "\r\n";
+		//$headers .= 'Bcc: agbani92@gmail.com' . "\r\n";
+	    $headers .= 'Reply-To: info@solomonmax.com' . "\r\n";
+	    $headers .= 'X-Mailer: PHP/' . phpversion();
+	   try {
+	   	mail($to, $subject, $message, $headers, '-flawrence@lawrencetalks.com -rlawrence@lawrencetalks.com');
+	   	//notify('info', "Your Mail has been sent successfully", site_url('Admin/Dashboard/email'));
+	   } catch (Exception $e) {
+	   	//notify('info', "There was an error " . $e->getMessage(), site_url('Admin/Dashboard/email'));
+	   }
+	   
+    }
+
     public function email()
     {
-    	if ($this->input->post()) {
-			$post = $this->input->post();
+    	if ($this->input->post('testmail')) {
+			$post = $this->input->post('testmail');
 
-			if ($post['testemail']) {
+			$message = $post['testmessage'];
+			$subject = $post['subject'];
+			$to = $post['testemail'];
 
-				$message = $post['testmessage'];
-				$subject = $post['subject'];
-				$to = $post['testemail'];
-
-				$this->mailout($message, $subject, $to);
-
-			} else {
-				
-				$message = $post['message'];
-				$subject = $post['subject'];
-
-				$this->mailout($message, $subject, $to);
-			}
+			$this->mailout($message, $subject, $to);
 			
+		}elseif($this->input->post('fullmail')){
+			$post = $this->input->post('fullmail');
+
+			$message = $post['message'];
+			$subject = $post['subject'];
+
+			$result = $this->db->get_where('worker_details', ['email'])->result();
+			foreach ($result as $val) {
+				$this->mailoutmulti($message, $subject, $val->email);
+			}
+			notify('info', "Your Mails have been sent successfully", site_url('Admin/Dashboard/email'));
 		}else{
 			$currentUser = $this->session->userdata('user_vars');
 			$adminName = $this->menu_header();

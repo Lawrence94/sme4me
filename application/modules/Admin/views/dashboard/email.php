@@ -32,17 +32,17 @@
 
                     <div class="form-group">
                       <label for="exampleInputPassword1">Test Receipient </label>
-                      <input type="email" name="testemail" class="form-control" id="exampleInputPassword1" placeholder="email address">
+                      <input type="email" name="testmail[testemail]" class="form-control" id="exampleInputPassword1" placeholder="email address">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputPassword1">Subject </label>
-                      <input type="text" name="subject" class="form-control" id="exampleInputPassword1" placeholder="subject">
+                      <input type="text" name="testmail[subject]" class="form-control" id="exampleInputPassword1" placeholder="subject">
                     </div>
 					
                     <div class="form-group">
                       <label for="exampleInputPassword1">Test Message </label>
-                      <textarea name="testmessage" class="form-control" id="exampleInputPassword1"></textarea>
+                      <textarea name="testmail[testmessage]" class="form-control" id="exampleInputPassword1"></textarea>
                     </div>
 
                     <div class="box-footer">
@@ -57,17 +57,17 @@
                   <div class="box-header with-border">
                     <h3 class="box-title">Send Full Mail</h3>
                   </div><!-- /.box-header -->
-  				        <form role="form" action="#" method="post" enctype="multipart/form-data">
+  				        <form role="form" action="<?= site_url('Admin/Dashboard/email'); ?>" method="post" enctype="multipart/form-data">
                     <div class="box-body">
 
                       <div class="form-group">
                         <label for="exampleInputPassword1">Subject </label>
-                        <input type="text" name="subject" class="form-control" id="exampleInputPassword1" placeholder="subject">
+                        <input type="text" name="fullmail[subject]" class="form-control" id="exampleInputPassword1" placeholder="subject">
                       </div>
 
                       <div class="form-group">
                         <label for="exampleInputPassword1">Message to all email addresses </label>
-                        <textarea name="message" class="form-control" id="exampleInputPassword1"></textarea>
+                        <textarea name="fullmail[message]" class="form-control" id="exampleInputPassword1"></textarea>
                       </div>
                       
                     </div><!-- /.box-body -->
